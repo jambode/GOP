@@ -1,4 +1,8 @@
-#ifndef turno_h
+File inutile al momento, ho implementato questo in un'altra funzione.
+
+
+
+/*#ifndef turno_h
 #define turno_h
 #include "player.h"
 #include "inizializza_player.h"
@@ -30,3 +34,4 @@ public:
 };
 
 #endif /* turno_h */
+*/
