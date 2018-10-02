@@ -56,7 +56,19 @@ public:
         posizione += n;
         return posizione;
     }*/
-
+       void posizione_corrente(int num){                  //stampa la posizione corrente
+        dado d;
+        if(num==0)
+        return;
+        int num_estratto = d.lancia_dado();             //lancia il dado
+        cout<<"lancio dado.."<<num_estratto<<endl;
+    	
+    	int posizione = p[num]->vai_a_casella(num_estratto);
+    	cout<<"posizione giocatore "<<num<<": ";
+    	if(posizione == 0) cout<<"partenza"<<endl;
+    	else cout<<posizione<<endl;
+    	posizione_corrente(num-1);
+}
 };
 
 
