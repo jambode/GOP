@@ -1,42 +1,43 @@
 #ifndef mazzo_carte_h
 #define mazzo_carte_h
+#include <string>
 #include <iostream>
+#include "carta.h"
 using namespace std;
 
-struct lista{
-    int val;        //azione da far eseguire per le carte
-    lista *next;
-};
+#define  NUMCARTE 40
 
-typedef lista* ptr_lista;
+// il mazzo viene implementato come una classe :un array di cartE E I vari metodi
+
+
 
 class mazzo{
-public:
-    ptr_lista head, p;
-    void Lista(){
-        p = new lista;
-        head = p;
-        for (int i = 0; i <= 40; i++){
-            p->val = 0;
-            p->next = new lista;
-            p = p->next;
-            p->next = head;
-        }
-    }
-    int pesca_carta(){            //rimozione in testa, inserimento in coda
-        ptr_lista tmp = head;
-        head = head->next;
-        while(p->next != NULL){
-            p = p->next;
-        }
-        p->next = new lista;
-        p = p->next;
-        p->val = tmp->val;
-        p->next = NULL;
-        delete tmp;
-        return p->val;         //sbagliato: non puntatore, ma valore
-    }
-};
 
+private:
+	carta mazzo_carte[NUMCARTE];
+	 int  num_cartacorrente;
+	
+public:
+	mazzo();  // COSTRUTTORE
+	
+	void mischia_mazzo();
+	void scambia_carta(int i, int J);
+	carta estrai_in_cima(); // estrae la carta dalla prima posizione poi la mette all'ultimo
+							//posto facendo slittare tutti i valori di un posto in avanti
+	void inserisci_in_fondo(); // NON IMPLEMENTATA DA TOGLIERE
+	
+// servono  per i test sulla classe mazzo	
+	void stampa_mazzo();   
+	carta estrai_carta(int i);
+	};
 
 #endif /* mazzo_carte_h */
+
+
+
+
+
+
+
+
+
