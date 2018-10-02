@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstring>
 #include "player.h"
+#include "dado.h"
 using namespace std;
 
 class inizializza_giocatori{
