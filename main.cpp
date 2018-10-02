@@ -21,30 +21,8 @@ int main() {
     
     srand(time(0));       //permette di generare vari numeri, in un loop non funziona.
     
-    turno turn;
-    turn.inizio_turno(num_player);
-
-    
- 
-    
-    /*
-    bool win = false;
-    int giro = 0;
-    
-   while((giro <= num_player) && win == false){
-     giro = 0;
-        while( win == false){
-        		
-				if (giro == num_player){
-        	 	win = true;	}
-        	 	
-            turn.inizio_turno(giro);
-            //fine_turno();
-           
-        }
-        giro++; 
-    }
-    */
+    // turno turn;
+   // turn.inizio_turno(num_player);
+    init.posizione_corrente(num_player);
     return 0;
 }
-
