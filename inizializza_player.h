@@ -57,18 +57,28 @@ public:
         posizione += n;
         return posizione;
     }*/
-       void posizione_corrente(int num){                  //stampa la posizione corrente
+    void posizione_corrente(int num){                  //stampa la posizione corrente
         dado d;
-        if(num==0)
-        return;
-        int num_estratto = d.lancia_dado();             //lancia il dado
+        for(int i=0; i<num; i++){
+        int num_estratto = d.lancia_dado();
         cout<<"lancio dado.."<<num_estratto<<endl;
     	
-    	int posizione = p[num]->vai_a_casella(num_estratto);
-    	cout<<"posizione giocatore "<<num<<": ";
+    	int posizione = p[i]->vai_a_casella(num_estratto);
+    	//cout<<"posizione giocatore "<<i+1<<": ";
     	if(posizione == 0) cout<<"partenza"<<endl;
-    	else cout<<posizione<<endl;
-    	posizione_corrente(num-1);
+    	else if (posizione%3==0){                  //permette di andare avanti se si capita su una casella %3==0
+    		posizione = e.vai_avanti(posizione);
+    		cout<<"posizione giocatore "<<i+1<<": "<<posizione<<endl;
+    		cout<<"\n";
+		}
+		else if(posizione%5==0){            //si rilancia il dado se si capita su una casella %5==0
+			posizione = e.tira_di_nuovo() + posizione;
+			cout<<"posizione giocatore "<<i+1<<": "<<posizione<<endl;
+			cout<<"\n";
+		}
+		else cout<<"posizione giocatore "<<i+1<<": "<<posizione<<endl;
+		cout<<"\n";
+}
 }
 };
 
