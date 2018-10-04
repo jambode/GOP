@@ -16,12 +16,12 @@ int effetti::tira_di_nuovo(){
 }
 
 int effetti::vai_avanti(int pos){
-	int dice = d.lancia_dado();
-	cout<<"CASELLA FORTUNATA!! "<<"avanza di "<<dice<<endl;
-	pos =	pos+dice;
-	return pos;
+	int dice = d.lancia_dado();        
+	cout<<"CASELLA FORTUNATA!! "<<"avanza di "<<dice<<endl;       //se si capita su una casella del genere si va avanti di un numero                                                             
+	pos =	pos+dice;                                             //casuale (decidere se vogliamo farlo con il lancio del dado o usando
+	return pos;                                                   //un rand su numeri da 1..10)
 }
-/*
+/*                                    ANCORA DA IMPLEMENTARE
 void effetti::salta_turno(){
 	
 }
