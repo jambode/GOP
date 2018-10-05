@@ -8,7 +8,7 @@ using namespace std;
 
 class inizializza_giocatori{
 public:
-    player *p[100];
+    player *p[1000];
     int posizione; 
 	string N;
     int num_giocatori ;
