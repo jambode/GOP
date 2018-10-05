@@ -57,27 +57,51 @@ public:
         posizione += n;
         return posizione;
     }*/
-    void posizione_corrente(int num){                  //stampa la posizione corrente
+     void posizione_corrente(int num){                  //stampa la posizione[i] corrente
         dado d;
-        for(int i=0; i<num; i++){
+        int t = set_turno();
+        int j = 0;
+        int pos_corr[100]; 
+        	cout<<"---------------------------------------------------------"<<endl;
+        cout<<"TURNO "<<t<<endl;
+        
+		while(j<num){
+		for(int i=0; i<num; i++){
         int num_estratto = d.lancia_dado();
         cout<<"lancio dado.."<<num_estratto<<endl;
+        
+    	pos_corr[j] = p[i]->vai_a_casella(num_estratto) + p[i]->vai_a_casella(pos_corr[j]);
     	
-    	int posizione = p[i]->vai_a_casella(num_estratto);
-    	//cout<<"posizione giocatore "<<i+1<<": ";
-    	if(posizione == 0) cout<<"partenza"<<endl;
-    	else if (posizione%3==0){                  //permette di andare avanti se si capita su una casella %3==0
-    		posizione = e.vai_avanti(posizione);
-    		cout<<"posizione giocatore "<<i+1<<": "<<posizione<<endl;
+    	//cout<<"pos_corr[j] giocatore "<<i+1<<": ";
+    
+    	if(pos_corr[j] == 0) cout<<"partenza"<<endl;
+    	
+    	else if (pos_corr[j]%3==0){                 //condizione casella vai avanti
+    		pos_corr[j] = e.vai_avanti(pos_corr[j]);
+    		cout<<"posizione giocatore "<<i+1<<": "<<pos_corr[j]<<endl;
     		cout<<"\n";
 		}
-		else if(posizione%5==0){            //si rilancia il dado se si capita su una casella %5==0
-			posizione = e.tira_di_nuovo() + posizione;
-			cout<<"posizione giocatore "<<i+1<<": "<<posizione<<endl;
+		else if(pos_corr[j]%5==0){            //condizione casella tira di nuovo
+		
+			pos_corr[j] = e.tira_di_nuovo() + pos_corr[j];
+			cout<<"posizione giocatore "<<i+1<<": "<<pos_corr[j]<<endl;
 			cout<<"\n";
 		}
-		else cout<<"posizione giocatore "<<i+1<<": "<<posizione<<endl;
+     /*	else if(pos_corr[j]%4==0){      //condizione casella pesca carta
+			e.pesca_carta();
+			pos_corr[j] = pos_corr[j] + pos_corr[j];
+			cout<<"pos_corr giocatore: "<<pos_corr[j]<<endl;
+		}*/
+		else if(pos_corr[j]%10==0){
+			e.salta_turno();
+			
+		}
+	
+		else
+		cout<<"posizione giocatore "<<i+1<<": "<<pos_corr[j]<<endl;
+	
 		cout<<"\n";
+		j++;
 }
 }
 };
