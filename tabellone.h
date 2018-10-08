@@ -2,7 +2,10 @@
 #define tabellone_h
 #include <ctime>
 #include <cstdlib>
-#include "inizializza_player.h"
+#include "player.h"
+#include "effetti.h"
+#include "effetti.cpp"
+using namespace std;
 
 struct casella{
     int val;
@@ -14,13 +17,15 @@ typedef casella* ptr_casella;
 
 class tabellone{
     ptr_casella head, p, n;
-public:
+    effetti e;
+    
+public: 
+    player *gioc[100];
+	int i;          // numero caselle random
     void genera_tabellone(){
         p = new casella;
-        int i;
-        srand(time(0));
-        i = (rand() % 20) + 41;
-        cout << "numero caselle: " << i << endl;
+        int num_caselle = return_caselle();
+        cout << "numero caselle: " << num_caselle << endl;
         head = p;
         n = p;
         p->prec = NULL;
@@ -38,7 +43,9 @@ public:
             i--;
         }
     }
-    void stampa_tabellone(){
+    void stampa_tabellone(){   //prende il numero di giocatori
+     	//player *gioc[100];
+     	//int posit = gioc[num]->ritorna_pos();
         int accapo = 0;
         while(head->next != NULL){
             
@@ -49,7 +56,8 @@ public:
             }
             
             //stampa partenza e arrivo
-            else if(head->val == 1) cout << "partenza" << '\t' << '\t';
+            else if(head->val == 1) 
+        		cout << "partenza" << '\t' << '\t';
             else cout << "arrivo" << endl;
             head = head->next;
             accapo += 1;
@@ -61,6 +69,14 @@ public:
             }
         }
     }
+        int return_caselle(){   //funzione che torna il numero di caselle, utile per essere richiamata in altre parti del programma
+        	srand(time(0));
+            i = (rand() % 20) + 41;
+        	return i;
+		}
+		
+
+    
 };
 
 
