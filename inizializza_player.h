@@ -2,17 +2,23 @@
 #define inizializza_player_h
 #include <iostream>
 #include <cstring>
+#include <ctime>
 #include "player.h"
 #include "dado.h"
+#include "effetti.h"
+#include "effetti.cpp"
+#include "tabellone.h"
 using namespace std;
 
 class inizializza_giocatori{
 public:
-    player *p[1000];
+    player *p[100];
     int posizione; 
 	string N;
     int num_giocatori ;
-
+    effetti e;
+    int turno = 0;
+    tabellone tab;
     int decidi_numero_giocatori(){
 
         
@@ -54,56 +60,102 @@ public:
     	cout<<"casella "<<p[i]->ritorna_pos()<< ": ";
 	}
     /* int vai_avanti_a(int n){
-        posizione += n;
-        return posizione;
+        posizione[i] += n;
+        return posizione[i];
     }*/
-     void posizione_corrente(int num){                  //stampa la posizione[i] corrente
+       int set_turno(){     //tiene il conto dei turni
+    	turno ++;
+    	return turno;
+	}
+	int return_turn(){
+		return turno;
+	}
+	
+    void posizione_corrente(int num){                  //stampa la posizione[i] corrente
         dado d;
         int t = set_turno();
         int j = 0;
-        int pos_corr[100]; 
-        	cout<<"---------------------------------------------------------"<<endl;
-        cout<<"TURNO "<<t<<endl;
-        
-		while(j<num){
-		for(int i=0; i<num; i++){
-        int num_estratto = d.lancia_dado();
-        cout<<"lancio dado.."<<num_estratto<<endl;
-        
-    	pos_corr[j] = p[i]->vai_a_casella(num_estratto) + p[i]->vai_a_casella(pos_corr[j]);
+        int fw_or_bw[num];
+        int pos_corr[1000]; 
+        int i = 0;
+        	
+        int num_caselle = tab.return_caselle();
+        cout<<"numero caselle "<<num_caselle<<endl;
+	
+		
+	while(p[i]->pos < num_caselle){
+		cout<<"---------------------------------------------------------"<<endl;
+                cout<<"TURNO "<<t++<<endl;
+		for( i=0; i<num; i++){
+                      int num_estratto= d.lancia_dado();
+                      cout<<"lancio dado.."<<num_estratto<<endl;
+                      p[i]->pos = p[i]->vai_avanti_n_caselle(num_estratto);
     	
     	//cout<<"pos_corr[j] giocatore "<<i+1<<": ";
-    
-    	if(pos_corr[j] == 0) cout<<"partenza"<<endl;
+    	              if(p[i]->pos >= num_caselle){                           //condizione di arrivo (DA AGGIUSTARE MA FUNZIONA)
+    		           cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+    	                   cout<<"giocatore "<<i+1<<" SEI ARRIVATO! "<<endl;
+		           return;	}
+    	              else if(p[i]->pos == 0) cout<<"partenza"<<endl;
     	
-    	else if (pos_corr[j]%3==0){                 //condizione casella vai avanti
-    		pos_corr[j] = e.vai_avanti(pos_corr[j]);
-    		cout<<"posizione giocatore "<<i+1<<": "<<pos_corr[j]<<endl;
-    		cout<<"\n";
+    	              else if (p[i]->pos%9==0){                 //condizione casella vai avanti
+    		            p[i]->pos = e.vai_avanti(p[i]->pos);
+    		            cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+    		            cout<<"\n";
 		}
-		else if(pos_corr[j]%5==0){            //condizione casella tira di nuovo
+				
+	              else if(p[i]->pos%5==0){            //condizione casella tira di nuovo
 		
-			pos_corr[j] = e.tira_di_nuovo() + pos_corr[j];
-			cout<<"posizione giocatore "<<i+1<<": "<<pos_corr[j]<<endl;
-			cout<<"\n";
+			    p[i]->pos = e.tira_di_nuovo() + p[i]->pos;
+			    cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+			    cout<<"\n";
 		}
-     /*	else if(pos_corr[j]%4==0){      //condizione casella pesca carta
+   /*  	else if(pos%4==0){      //condizione casella pesca carta
 			e.pesca_carta();
-			pos_corr[j] = pos_corr[j] + pos_corr[j];
-			cout<<"pos_corr giocatore: "<<pos_corr[j]<<endl;
+			pos = pos + pos;
+			cout<<"posizione giocatore: "<<pos<<endl;
 		}*/
-		else if(pos_corr[j]%10==0){
+	/*	else if(pos%10==0){
 			e.salta_turno();
-			
+			int turno = return_turno();
+			p[i]
+		}*/
+		       else if(p[i]->pos%4==0 && t>1){               //casella che permette random di andare avanti o indietro
+	
+			     fw_or_bw[i] = rand()%2;
+			     int num = e.fortuna(num_giocatori);
+			     cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+			     if(fw_or_bw[i]==1){
+		                cout<<"avanti di: "<<num<<endl;
+		                p[i]->pos = p[i]->vai_avanti_n_caselle(num);
+	}
+	                     else {
+	                        cout<<"indietro di: "<<num<<endl;
+	                        p[i]->pos = p[i]->indietro_n_caselle(num);
+
+}
+			     cout<<"NUOVA POSIZIONE "<<i+1<<": "<<p[i]->pos<<endl;
 		}
+		
+		      else cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;        //casella vuota
 	
-		else
-		cout<<"posizione giocatore "<<i+1<<": "<<pos_corr[j]<<endl;
-	
-		cout<<"\n";
-		j++;
+		      cout<<"\n";
 }
 }
+}
+    /*
+    void turns(){
+    	int num_caselle = tab.return_caselle();
+    	cout<<"caselle "<<num_caselle;
+    	for(int i=0; i<num_giocatori; i++){
+    	while(p[i]->pos < num_caselle)
+    	posizione_corrente(num_giocatori);
+    
+    		
+}
+}*/
+   
+
 };
 
 
