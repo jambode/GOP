@@ -140,7 +140,8 @@ public:
 		      else cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;        //casella vuota
 	
 		      cout<<"\n";
-}
+}    
+		  i++;
 }
 }
     /*
