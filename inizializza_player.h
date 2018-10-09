@@ -132,6 +132,24 @@ public:
 			int turno = return_turno();
 			p[i]
 		}*/
+	//CONDIZIONE SCAMBIA POSTO GIOCATORI
+	else if(p[i]->pos==13 || p[i]->pos==11 || p[i]->pos == 23){
+			int pl = e.fortuna(num_giocatori);
+			int temp;
+			if(pl!= i){
+			temp = p[i]->pos;
+			p[i]->pos = p[pl]->pos;
+			p[pl]->pos = temp;
+			cout<<"SCAMBIA CON "<<pl+1<<endl;
+			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+			cout<<"posizione giocatore "<<pl+1<<": "<<p[pl]->pos<<endl;
+		    }
+		    else {
+			cout<<"SEI STATO FORTUNATO, RIMANI AL TUO POSTO!! "<<endl;
+		    cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+		    }  
+		}
+		
 	     //CONDIZIONE CHE PERMETTE DI ANDARE AVANTI/INDIETRO RANDOM
 		else if(p[i]->pos%4==0 && t>1){
 	
