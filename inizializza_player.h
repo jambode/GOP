@@ -83,7 +83,7 @@ public:
         cout<<"numero caselle "<<num_caselle<<endl;
 	
 	    
-        while(p[i]->pos < num_caselle){
+        while(p[i]->pos != num_caselle){
         cout<<"---------------------------------------------------------"<<endl;
         cout<<"TURNO "<<t++<<endl;
 		for(int i=0; i<num; i++){
@@ -94,19 +94,29 @@ public:
         p[i]->pos = p[i]->vai_avanti_n_caselle(num_estratto);
     	
     	//cout<<"pos_corr[j] giocatore "<<i+1<<": ";
-    		if(p[i]->pos >= num_caselle){
+    	//CONDIZIONE CHE PERMETTE DI STABILIRE CHE UN GIOCATORE è ARRIVATO AL TRAGUARDO.
+    		if(p[i]->pos == num_caselle){
     			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
     	cout<<"giocatore "<<i+1<<" SEI ARRIVATO! "<<endl;
 		return;
 			}
+			//CONDIZIONE CHE FA TORNARE INDIETRO IL GIOCATORE QUANDO SUPERA IL NUMERO DI CASELLE
+		else if(p[i]->pos > num_caselle){
+			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+			int difference = p[i]->pos - num_caselle;
+			p[i]->pos = p[i]->pos - difference*2;
+			cout<<"DEVI TORNARE INDIETRO DI "<<difference<<", CI SEI QUASI... "<<endl;
+			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+		}
     	else if(p[i]->pos == 0) cout<<"partenza"<<endl;
-    	
-    	else if (p[i]->pos%9==0){                 //condizione casella vai avanti
+    	//CONDIZIONE VAI ALLA CASELLA N
+    	else if (p[i]->pos%9==0){                 
     		p[i]->pos = e.vai_avanti(p[i]->pos);
     		cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
     		cout<<"\n";
 		}
-		else if(p[i]->pos%5 ==0){            //condizione casella tira di nuovo
+	//CONDIZIONE TIRA DI NUOVO	
+	else if(p[i]->pos%5 ==0){            
 		
 			p[i]->pos = e.tira_di_nuovo() + p[i]->pos;
 			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
@@ -122,6 +132,7 @@ public:
 			int turno = return_turno();
 			p[i]
 		}*/
+	     //CONDIZIONE CHE PERMETTE DI ANDARE AVANTI/INDIETRO RANDOM
 		else if(p[i]->pos%4==0 && t>1){
 	
 			fw_or_bw[i] = rand()%2;
@@ -138,8 +149,8 @@ public:
 }
 			cout<<"NUOVA POSIZIONE "<<i+1<<": "<<p[i]->pos<<endl;
 	} 
-		
-		else cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;        //casella vuota
+		//CASELLA VUOTA
+		else cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;        
 	
 		cout<<"\n";
 } 
@@ -150,7 +161,7 @@ public:
 
 
     
-  /*  void turns(){
+/*    void turns(){
     	int num_caselle = tab.return_caselle();
     	cout<<"caselle "<<num_caselle;
     	for(int i=0; i<num_giocatori; i++){
@@ -160,7 +171,7 @@ public:
     		
 }
 }
-   */
+  */ 
 
 };
 
