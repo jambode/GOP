@@ -18,7 +18,7 @@ string  msg_carte(int num){
 		  	    break;
 		case 4:  str= "fai 3 passi indietro";	
 		  	    break;
-		case 5:  str= "scambia il posto con il giocatore precedente";	
+		case 5:  str= "rispondi alla domanda";	
 		  	    break;
 		default: str="errore" 	;
 		
