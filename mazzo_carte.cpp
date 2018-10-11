@@ -9,10 +9,27 @@
 #include "mazzo_carte.h"
 using namespace std;
 
-string  msg_carte(int num);// funzione definita nel file messaggi.ccp che associa ad ogni numtra o e5 un opportuno msg
-
-
-
+string  mazzo::msg_carte(int num){
+	string	str;
+	switch (num){
+		case 0:	str ="ritira il dado";
+				break;
+		case 1:  str= "salta il turno";	
+		  	    break;
+		case 2:  str= "ritorna alla casell 0";	
+		  	    break;
+		case 3:  str= "fai 3 passi in avanti";	
+		  	    break;
+		case 4:  str= "fai 3 passi indietro";	
+		  	    break;
+		case 5:  str= "scambia il posto con il giocatore precedente";	
+		  	    break;
+		default: str="errore" 	;
+		
+		 	    
+	}
+	return str;
+}
 // TESTATO OK
 	mazzo:: mazzo(){ // costruttore : le 40 carte saranno inizializzate ciclicamente da 0......5
 		int i=0;
