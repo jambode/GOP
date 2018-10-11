@@ -1,10 +1,9 @@
-#ifndef dado_h
-#define dado_h
-//#include <iostream>
+#ifndef _DADO_H
+#define _DADO_H
+#include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include "mazzo_carte.h"
-#include "player.h"
+
 //using namespace std;
 
 /*
@@ -13,13 +12,11 @@
 
 class dado{
 public:
-	int dado;
-    int lancia_dado(){
-        //srand(time(0));
-        dado = (rand() % 6) + 1;
-        
-        return dado;
-       // muoviGiocatore(dado);
-}};
+	dado();
+	int dice;
+    int lancia_dado();
+ 
+};
+
 
 #endif /* dado_h */
