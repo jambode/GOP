@@ -30,7 +30,7 @@ public:
 	void stampa_mazzo();   
 	carta estrai_carta(int i);
 	};
-
+#include "mazzo_carte.cpp"
 #endif /* mazzo_carte_h */
 
 
