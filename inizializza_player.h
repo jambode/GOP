@@ -1,185 +1,40 @@
-#ifndef inizializza_player_h
-#define inizializza_player_h
+#ifndef _INIZIALIZZA_PLAYER_H
+#define _INIZIALIZZA_PLAYER_H
 #include <iostream>
 #include <cstring>
 #include <ctime>
-#include "player.h"
-#include "dado.h"
-#include "effetti.h"
+#include "dado.cpp"
+#include "player.cpp"
 #include "effetti.cpp"
-#include "tabellone.h"
+#include "tabellone.cpp"
 using namespace std;
 
 class inizializza_giocatori{
+
 public:
     player *p[100];
     int posizione; 
-	string N;
+	char N[50];
     int num_giocatori ;
     effetti e;
     int turno = 0;
     tabellone tab;
-    int decidi_numero_giocatori(){
-
-        
-            cout << "decidi il numero dei giocatori: ";
-            cin >> num_giocatori;                                           //numero giocatori
-            if (num_giocatori < 2){
-                cout << "i giocatori devono essere almeno 2." << endl;
-                num_giocatori = 0;
-            }
-        return num_giocatori ;
-    }
-    
-	int return_num_giocatori(){
-     return num_giocatori;
-    }
+    int decidi_numero_giocatori();
+	int return_num_giocatori();
     
     
-    void inizializza_player(){
-        for(int i = 0; i < num_giocatori; i++){
-            cout << "inserisci nome giocatore " << i+1 << ": ";
-            cin >> N;
-            posizione = 0;
-            p[i] = new player(posizione, N);
-        }
-    }
-    void stampa_giocatori(){
-        for(int i = 0; i < num_giocatori; i++){
-            cout << "nome giocatore " << i+1 << ": ";
-            p[i]->presenta_giocatore();
-            cout << endl;
-        }
-    }
-  /*  void muoviGiocatore(int passi){
-    	for(int i=0; i<num_giocatori; i++){
-    	int nuova_pos = p[i]->ritorna_pos()+passi;
-    	if (nuova_pos<0)
-    	nuova_pos = 0;
-    	p[i]->player(nuova_pos);
-    	cout<<"casella "<<p[i]->ritorna_pos()<< ": ";
-	}
-    /* int vai_avanti_a(int n){
-        posizione[i] += n;
-        return posizione[i];
-    }*/
-       int set_turno(){     //tiene il conto dei turni
-    	turno ++;
-    	return turno;
-	}
-	int return_turn(){
-		return turno;
-	}
+    void inizializza_player();
+    void stampa_giocatori();
+  
+    int set_turno();
+	int return_turn();
 	
-    void posizione_corrente(int num){                  //stampa la posizione[i] corrente
-        dado d;
-        int t = set_turno();
-        int j = 0;
-        int fw_or_bw[num];
-        //int pos_corr[1000]; 
-        int i = 0;
-        
-        int num_caselle = tab.return_caselle();
-        cout<<"numero caselle "<<num_caselle<<endl;
-	
-	    
-        while(p[i]->pos != num_caselle){
-        cout<<"---------------------------------------------------------"<<endl;
-        cout<<"TURNO "<<t++<<endl;
-		for(int i=0; i<num; i++){
-		
-		
-        int num_estratto= d.lancia_dado();
-        cout<<"lancio dado.."<<num_estratto<<endl;
-        p[i]->pos = p[i]->vai_avanti_n_caselle(num_estratto);
-    	
-    	//cout<<"pos_corr[j] giocatore "<<i+1<<": ";
-    	//CONDIZIONE CHE PERMETTE DI STABILIRE CHE UN GIOCATORE è ARRIVATO AL TRAGUARDO.
-    		if(p[i]->pos == num_caselle){
-    			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-    	cout<<"giocatore "<<i+1<<" SEI ARRIVATO! "<<endl;
-		return;
-			}
-			//CONDIZIONE CHE FA TORNARE INDIETRO IL GIOCATORE QUANDO SUPERA IL NUMERO DI CASELLE
-		else if(p[i]->pos > num_caselle){
-			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-			int difference = p[i]->pos - num_caselle;
-			p[i]->pos = p[i]->pos - difference*2;
-			cout<<"DEVI TORNARE INDIETRO DI "<<difference<<", CI SEI QUASI... "<<endl;
-			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-		}
-    	else if(p[i]->pos == 0) cout<<"partenza"<<endl;
-    	//CONDIZIONE VAI ALLA CASELLA N
-    	else if (p[i]->pos%9==0){                 
-    		p[i]->pos = e.vai_avanti(p[i]->pos);
-    		cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-    		cout<<"\n";
-		}
-	//CONDIZIONE TIRA DI NUOVO	
-	else if(p[i]->pos%5 ==0){            
-		
-			p[i]->pos = e.tira_di_nuovo() + p[i]->pos;
-			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-			cout<<"\n";
-		}
-   /*  	else if(pos%4==0){      //condizione casella pesca carta
-			e.pesca_carta();
-			pos = pos + pos;
-			cout<<"posizione giocatore: "<<pos<<endl;
-		}*/
-	/*	else if(pos%10==0){
-			e.salta_turno();
-			int turno = return_turno();
-			p[i]
-		}*/
-	//CONDIZIONE SCAMBIA POSTO GIOCATORI
-	else if(p[i]->pos==13 || p[i]->pos==11 || p[i]->pos == 23){
-			int pl = e.fortuna(num_giocatori);
-			int temp;
-			if(pl!= i){
-			temp = p[i]->pos;
-			p[i]->pos = p[pl]->pos;
-			p[pl]->pos = temp;
-			cout<<"SCAMBIA CON "<<pl+1<<endl;
-			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-			cout<<"posizione giocatore "<<pl+1<<": "<<p[pl]->pos<<endl;
-		    }
-		    else {
-			cout<<"SEI STATO FORTUNATO, RIMANI AL TUO POSTO!! "<<endl;
-		    cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-		    }  
-		}
-		
-	     //CONDIZIONE CHE PERMETTE DI ANDARE AVANTI/INDIETRO RANDOM
-		else if(p[i]->pos%4==0 && t>1){
-	
-			fw_or_bw[i] = rand()%2;
-			int num = e.fortuna(num_giocatori);
-			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-			if(fw_or_bw[i]==1){
-		cout<<"avanti di: "<<num<<endl;
-		p[i]->pos = p[i]->vai_avanti_n_caselle(num);
-	}
-	else {
-	cout<<"indietro di: "<<num<<endl;
-	p[i]->pos = p[i]->indietro_n_caselle(num);
-
-}
-			cout<<"NUOVA POSIZIONE "<<i+1<<": "<<p[i]->pos<<endl;
-	} 
-		//CASELLA VUOTA
-		else cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;        
-	
-		cout<<"\n";
-} 
-
-}
-}
+    void posizione_corrente(int num);
 
 
 
-    
-/*    void turns(){
+/*    
+    void turns(){
     	int num_caselle = tab.return_caselle();
     	cout<<"caselle "<<num_caselle;
     	for(int i=0; i<num_giocatori; i++){
@@ -189,9 +44,8 @@ public:
     		
 }
 }
-  */ 
+ */  
 
 };
-
 
 #endif /* inizializza_player_h */
