@@ -1,13 +1,11 @@
-// file mazzo_carte.ccp
-
-#include <string>
+#include <cstring>
 #include <iostream> 
 #include<ctime> // per time()
 #include<cstdlib>
-
-
 #include "mazzo_carte.h"
+
 using namespace std;
+
 
 string  mazzo::msg_carte(int num){
 	string	str;
@@ -30,20 +28,24 @@ string  mazzo::msg_carte(int num){
 	}
 	return str;
 }
+
+mazzo::mazzo(){
+}
+
 // TESTATO OK
-	mazzo:: mazzo(){ // costruttore : le 40 carte saranno inizializzate ciclicamente da 0......5
+void  mazzo::crea_mazzo(){ // costruttore : le 40 carte saranno inizializzate ciclicamente da 0......5
 		int i=0;
 		for(int t=0; t<NUMCARTE;t++){
 		
 		if (i<6){
-			mazzo_carte[t].setvalore(i) ;
-			mazzo_carte[t].setstringa(msg_carte( i));//associa alla carta il msg associato al suo numeri funzione che sta in messaggi.cpp
+			mazzo_carte[t]->setvalore(i) ;
+	     	mazzo_carte[t]->setstringa(msg_carte(i)); //associa alla carta il msg associato al suo numeri funzione che sta in messaggi.cpp
 		
 			i++;
 		} else{
 				i=0;
-				mazzo_carte[t].setvalore(i) ;
-				mazzo_carte[t].setstringa(msg_carte( i));//associa alla carta il msg associato al suo numeroi
+				mazzo_carte[t]->setvalore(i) ;
+				mazzo_carte[t]->setstringa(msg_carte( i));//associa alla carta il msg associato al suo numeroi
 				i++;
 		}
 	}
@@ -54,7 +56,7 @@ string  mazzo::msg_carte(int num){
 	
 	
 // TESTATO OK	
-	void mazzo::mischia_mazzo(){
+void mazzo::mischia_mazzo(){
 		int t=0;
 		int j=0;
 		srand(time(NULL));
@@ -67,8 +69,8 @@ string  mazzo::msg_carte(int num){
 	};
 	
 	void mazzo::scambia_carta(int i, int j ){
-		carta temp;
-		temp= mazzo_carte[i];
+		carta *temp;
+		temp = mazzo_carte[i];
 		mazzo_carte[i]=mazzo_carte[j];
 		mazzo_carte[j]=temp;
 	}
@@ -78,11 +80,11 @@ string  mazzo::msg_carte(int num){
 // facendo slittare in avanti di una posizione tutti gli altri
 
 	carta mazzo::estrai_in_cima(){
-		carta temp;
+		carta *temp;
 	
 	    temp=mazzo_carte[0];  // estraggo la prima ( poi la rimetto  in fondo)
 	  //TEST
-	    temp.stampa_carta();
+	    temp->stampa_carta();
 	    
 		int j=1;
 	    for(int i=0;i<NUMCARTE-1; i++) // faccio slittare di uno a sinistra tutto l'array
@@ -92,8 +94,8 @@ string  mazzo::msg_carte(int num){
 			 cout<< "   j= " << j ;
 	   	  
 	   	mazzo_carte[j-1] =temp; //copio l'elemento selezionato nell'ultima posizione
-	   	mazzo_carte[j-1].stampa_carta();
-		return(temp);
+	   	mazzo_carte[j-1]->stampa_carta();
+		return(*temp);
 	};
 	
 	void mazzo::inserisci_in_fondo(){
@@ -110,31 +112,28 @@ string temp_string;
 for(int i=0;i< CARTE_DA_STAMPARE; i++){
 	
 /* altra implementazione, ok anche questa
-
 temp = mazzo_carte[i].getvalore();
-
   cout<< temp  <<"  ";
 */
-  cout<< mazzo_carte[i].getvalore()<<"   ";
+  cout<< mazzo_carte[i]->getvalore()<<"   ";
   
-  cout <<mazzo_carte[i].getmsg() <<"\n";
+  cout <<mazzo_carte[i]->getmsg() <<"\n";
   
 }
 
 };
 
-
+/*
 carta mazzo::estrai_carta(int i ){
 return  mazzo_carte[i];
 };
 
-
+*/
 
 
 
 
 // il mazzo viene implementato come una classe :un array di cartE E I vari metodi
-
 
 
 
