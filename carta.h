@@ -22,6 +22,6 @@ class carta{
 		void stampa_carta(); // SERVE PER I TEST stampa il valore della carta 
 
 };
-
+#include "carta.cpp"
 #endif /* mazzo_carte_h */
 
