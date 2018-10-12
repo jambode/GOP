@@ -24,12 +24,11 @@ public:
 	void scambia_carta(int i, int J);
 	carta estrai_in_cima(); // estrae la carta dalla prima posizione poi la mette all'ultimo
 							//posto facendo slittare tutti i valori di un posto in avanti
-	void inserisci_in_fondo(); // NON IMPLEMENTATA DA TOGLIERE
 	string msg_carte(int num);
 // servono  per i test sulla classe mazzo	
 	void stampa_mazzo();   
-	carta estrai_carta(int i);
 	};
+
 #include "mazzo_carte.cpp"
 #endif /* mazzo_carte_h */
 
