@@ -79,10 +79,6 @@ void mazzo::mischia_mazzo(){
 // estrae la prima carta e la rimette in fondo al mazzo = ultima  posizione	del mazzo
 // facendo slittare in avanti di una posizione tutti gli altri
 
-	carta mazzo::estrai_in_cima(){
-		carta *temp;
-	
-	    temp=mazzo_carte[0];  // estraggo la prima ( poi la rimetto  in fondo)
 	  //TEST
 	    temp->stampa_carta();
 	    
@@ -103,32 +99,17 @@ void mazzo::mischia_mazzo(){
 
 // serve per i test
 #define CARTE_DA_STAMPARE 40
-void mazzo::stampa_mazzo()
-{
-//int temp;  non serve  ...serviva nell'altra implementazione 
-string temp_string;
 
+void mazzo::stampa_mazzo(){
 
-for(int i=0;i< CARTE_DA_STAMPARE; i++){
-	
-/* altra implementazione, ok anche questa
-temp = mazzo_carte[i].getvalore();
-  cout<< temp  <<"  ";
-*/
-  cout<< mazzo_carte[i]->getvalore()<<"   ";
-  
-  cout <<mazzo_carte[i]->getmsg() <<"\n";
-  
-}
+	string temp_string;
+	for(int i=0;i< CARTE_DA_STAMPARE; i++){
+	cout<< mazzo_carte[i]->getvalore()<<"   ";
+  	cout <<mazzo_carte[i]->getmsg() <<"\n";
+  }
 
 };
 
-/*
-carta mazzo::estrai_carta(int i ){
-return  mazzo_carte[i];
-};
-
-*/
 
 
 
