@@ -1,35 +1,30 @@
-#include "carta.h"
 #include <iostream>
-#include <string>
+#include <cstring>
+#include <ctime>
+#include "carta.h"
+
 using namespace std;
 
-carta::carta(){
-valore=0;
-msg="";}
 
-carta::carta(int val,string frase) {
-	valore=val;
-	msg=frase;
+void carta::set_valore(){
+	valore = rand()%40+1;        //permette di generare 40 carte random
 }
-void carta::setvalore(int i){
-	valore=i;
-}
-void carta::setstringa(string s ){
-	msg=s;
+
+void carta::set_message(string m){
+	msg = m;
 	}
 
 
 int carta::getvalore(){
-	return(valore);
+	return valore;
 }
-string carta :: getmsg(){
+/*
+char carta::getmsg(){
 	return msg;
-}
+}*/
 
 // SERVE PER I TEST stampa il valore di una carta 
 	void carta::stampa_carta (){
 		cout<< " num carta =  "   <<valore << "    "<<"messaggio =  "<<msg <<"\n";
 		
 	}
-
-
