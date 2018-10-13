@@ -1,27 +1,28 @@
-#ifndef carta_h
-#define carta_h
+#ifndef CARTA_H
+#define CARTA_H
 #include <iostream>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
+#define  NUMCARTE 5
+
 class carta{
-   private:
-		int valore;  // i valori  sono cmpresi tra 0 e 5  .....i valori possibili sono 0,1,2,3,4,5
+   protected:
+		int valore;   // i valori  sono cmpresi tra 0 e 5  .....i valori possibili sono 0,1,2,3,4,5
 		string msg; // frase che indica l'azione da fare  DA VEDERE SE SERVE
 	public:
-		carta();			// costruttore carta
-		carta(int val,string frase);
+		carta(){};			// costruttore carta
+		//carta(int val,string frase);
 		// SET
-		void setvalore(int i);
-		void setstringa (string s);
+		void set_valore();
+		void set_message(string m);
 		//GET
 		int getvalore();	// restituisce il valore della carta
-		string getmsg();  // restituisce il msg associato alla carta
+		char getmsg();  // restituisce il msg associato alla carta
          //TEST
 		void stampa_carta(); // SERVE PER I TEST stampa il valore della carta 
 
 };
-#include "carta.cpp"
-#endif /* mazzo_carte_h */
-
+#include"carta.cpp"
+#endif 
