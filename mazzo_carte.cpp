@@ -1,8 +1,8 @@
 #include <cstring>
 #include <iostream> 
 #include<ctime> // per time()
-#include<cstdlib>
-#include "mazzo_carte.h"
+#include<cstdlib>                                       //SE LO MODIFICATE VI STACCO LE ORECCHIE
+#include "mazzo_carte.h"                                 //(o almeno ditemelo prima!!)
 
 using namespace std;
 
