@@ -100,12 +100,12 @@ void mazzo::stampa_mazzo(){          // serviva per vedere se stampava il mazzo 
 		cout<<mazzo_carte[i].getmsg();
 	}
 }
-*/
+
 	
 carta mazzo::estrai_carta(int i){      //FUNZIONA
 	return mazzo_carte[i];
 }
-
+*/
 
 
 // il mazzo viene implementato come una classe :un array di cartE E I vari metodi
