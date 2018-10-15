@@ -75,21 +75,22 @@ void mazzo::scambia_carta(int i, int j ){     //FUNZIONA
 // estrae la prima carta e la rimette in fondo al mazzo = ultima  posizione del mazzo
 // facendo slittare in avanti di una posizione tutti gli altri
 
-	carta mazzo::estrai_in_cima(){               //FUNZIONA
-		carta temp;
-		temp=mazzo_carte[0];  // inizializzo temp alla prima carta del mazzo (estraggo la prima ( poi la rimetto  in fondo))
-	  //TEST
-	    	temp.stampa_carta();
-	    	int j=1;
-	   	for(int i=0;i<NUMCARTE-1; i++) // faccio slittare di uno a sinistra tutto l'array
-	   	mazzo_carte[i]=mazzo_carte[j++];
+carta mazzo::estrai_in_cima(){               //FUNZIONA
+	carta temp;
+	temp=mazzo_carte[0];  // inizializzo temp alla prima carta del mazzo (estraggo la prima ( poi la rimetto  in fondo))
+	
+	//TEST
+	temp.stampa_carta();
+	int j=1;
+	for(int i=0;i<NUMCARTE-1; i++) // faccio slittare di uno a sinistra tutto l'array
+   	mazzo_carte[i]=mazzo_carte[j++];
 	   	
-		// TEST
-	   	cout<<"\n"<<"\n";
-	   	mazzo_carte[j-1] =temp; //copio l'elemento selezionato nell'ultima posizione
-	   	mazzo_carte[j-1].stampa_carta();
-		return(temp);
-	};
+	// TEST
+  	cout<<"\n"<<"\n";
+	mazzo_carte[j-1] =temp; //copio l'elemento selezionato nell'ultima posizione
+   	mazzo_carte[j-1].stampa_carta();
+	return(temp);
+};
 
 
 /*
