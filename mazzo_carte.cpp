@@ -33,7 +33,7 @@ mazzo::mazzo(){
 }
 
 // TESTATO OK
-void  mazzo::crea_mazzo(){ // costruttore : le 40 carte saranno inizializzate ciclicamente da 0......5              //FUNZIONA
+void  mazzo::crea_mazzo(){ //le 40 carte saranno inizializzate ciclicamente da 0......5 (anche i messaggi)             //FUNZIONA
            int i=0;
 		for(int t=0; t<NUMCARTE;t++){
 		
@@ -42,105 +42,71 @@ void  mazzo::crea_mazzo(){ // costruttore : le 40 carte saranno inizializzate ci
 			mazzo_carte[t].setstringa(msg_carte( i));//associa alla carta il msg associato al suo numeri funzione che sta in messaggi.cpp
 		
 			i++;
-		} else{
-				i=0;
-				mazzo_carte[t].setvalore(i) ;
-				mazzo_carte[t].setstringa(msg_carte( i));//associa alla carta il msg associato al suo numeroi
-				i++;
+		}
+		else{
+			i=0;
+			mazzo_carte[t].setvalore(i) ;
+			mazzo_carte[t].setstringa(msg_carte( i));//associa alla carta il msg associato al suo numeroi
+			i++;
 		}
 	  	};
 	
 		
 
-	
-	
 // TESTATO OK	
 void mazzo::mischia_mazzo(){           //FUNZIONA
-		int t=0;
-		int j=0;
-		srand(time(NULL));
-		for(int i=0;i<40; i++){
-			t=rand()%NUMCARTE;
-			j=rand()%NUMCARTE;
-			scambia_carta( t, j );
-		}
-		
-	};
+	int t=0;
+	int j=0;
+	srand(time(NULL));
+	for(int i=0;i<40; i++){
+		t=rand()%NUMCARTE;
+		j=rand()%NUMCARTE;
+		scambia_carta( t, j );
+	  }
+  }
 	
-	void mazzo::scambia_carta(int i, int j ){     //FUNZIONA
-		carta temp;
-		temp = carte[i];
-		carte[i]=carte[j];
-		carte[j]=temp;
+void mazzo::scambia_carta(int i, int j ){     //FUNZIONA
+	carta temp;
+	temp = carte[i];
+	carte[i]=carte[j];
+	carte[j]=temp;
 	}
 	
-	
-// estrae la prima carta e la rimette in fondo al mazzo = ultima  posizione	del mazzo
+// estrae la prima carta e la rimette in fondo al mazzo = ultima  posizione del mazzo
 // facendo slittare in avanti di una posizione tutti gli altri
 
 	carta mazzo::estrai_in_cima(){               //FUNZIONA
-		
-	
-	    temp=carte[0];  // estraggo la prima ( poi la rimetto  in fondo)
+		carta temp;
+		temp=mazzo_carte[0];  // inizializzo temp alla prima carta del mazzo (estraggo la prima ( poi la rimetto  in fondo))
 	  //TEST
-	    temp.stampa_carta();
-	    
-		int j=1;
-	    for(int i=0;i<NUMCARTE-1; i++) // faccio slittare di uno a sinistra tutto l'array
-	   	  carte[i]=carte[j++];
-	   	 // TEST
-	   	 cout<<"\n"<<"\n";
-	   	carte[j-1] =temp; //copio l'elemento selezionato nell'ultima posizione
-	   	carte[j-1].stampa_carta();
+	    	temp.stampa_carta();
+	    	int j=1;
+	   	for(int i=0;i<NUMCARTE-1; i++) // faccio slittare di uno a sinistra tutto l'array
+	   	mazzo_carte[i]=mazzo_carte[j++];
+	   	
+		// TEST
+	   	cout<<"\n"<<"\n";
+	   	mazzo_carte[j-1] =temp; //copio l'elemento selezionato nell'ultima posizione
+	   	mazzo_carte[j-1].stampa_carta();
 		return(temp);
 	};
-	
-	
-	
-	void mazzo::inserisci_in_fondo(){
-		
-	};
 
-// serve per i test
-#define CARTE_DA_STAMPARE 40
-void mazzo::stampa_mazzo(){             //FUNZIONA
-	for(int i =0; i<NUMCARTE; i++){
-		carte[i].stampa_carta();
+
+/*
+void mazzo::stampa_mazzo(){          // serviva per vedere se stampava il mazzo giusto      
+	for(int i=0; i<NUMCARTE; i++){
+		cout<<mazzo_carte[i].getvalore()<<"\n";
+		cout<<mazzo_carte[i].getmsg();
 	}
 }
-/*
-int temp;  non serve  ...serviva nell'altra implementazione 
-string temp_string;
-
-for(int i=0;i< CARTE_DA_STAMPARE; i++){
-	
- altra implementazione, ok anche questa
-temp = carte[i].getvalore();
-  cout<< temp  <<"  ";
-
-  cout<< carte[i].getvalore()<<"   ";
-  
-  cout <<carte[i].getmsg() <<"\n";
-  
-}
-
-};
 */
-
+	
 carta mazzo::estrai_carta(int i){      //FUNZIONA
-	carta estr = carte[i-1];
-    estr.stampa_carta();
-    
-};
-
-
-
+	return mazzo_carte[i];
+}
 
 
 
 // il mazzo viene implementato come una classe :un array di cartE E I vari metodi
 
-
-
-
-
+	
