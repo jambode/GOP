@@ -19,7 +19,7 @@ private:
 	
 public:
 	mazzo();  // COSTRUTTORE
-	
+	void crea_mazzo();
 	void mischia_mazzo();
 	void scambia_carta(int i, int J);
 	carta estrai_in_cima(); // estrae la carta dalla prima posizione poi la mette all'ultimo
