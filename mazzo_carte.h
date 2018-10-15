@@ -2,8 +2,8 @@
 #define mazzo_carte_h
 #include <string>
 #include <iostream>
-#include "carta.h"
-using namespace std;
+#include "carta.h"                                           //SE LO MODIFICATE VI STACCO LE ORECCHIE
+using namespace std;                                          // (o almeno avvisatemi prima!!)
 
 #define  NUMCARTE 40
 
