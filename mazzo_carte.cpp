@@ -34,11 +34,20 @@ mazzo::mazzo(){
 
 // TESTATO OK
 void  mazzo::crea_mazzo(){ // costruttore : le 40 carte saranno inizializzate ciclicamente da 0......5              //FUNZIONA
-        for(int i = 0; i<NUMCARTE; i++){
-        	carte[i].set_valore();
-        	carte[i].set_message(msg_carte(i));
-        	carte[i].stampa_carta();
-		}  
+           int i=0;
+		for(int t=0; t<NUMCARTE;t++){
+		
+		if (i<6){
+			mazzo_carte[t].setvalore(i) ;
+			mazzo_carte[t].setstringa(msg_carte( i));//associa alla carta il msg associato al suo numeri funzione che sta in messaggi.cpp
+		
+			i++;
+		} else{
+				i=0;
+				mazzo_carte[t].setvalore(i) ;
+				mazzo_carte[t].setstringa(msg_carte( i));//associa alla carta il msg associato al suo numeroi
+				i++;
+		}
 	  	};
 	
 		
