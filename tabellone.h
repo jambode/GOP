@@ -21,11 +21,13 @@ class tabellone{
     
 public: 
     player *gioc[100];
-	int i;          // numero caselle random
-    void genera_tabellone();
+	int i;        
+	
+    void genera_tabellone(int num_caselle);
     void stampa_tabellone();
     int return_caselle();
-
+    int num_caselle = return_caselle();   // numero caselle random (vengono definite prima che venga generato il tabellone,
+                                          // in modo che all'interno del gioco il numero di caselle non cambi ogni turno.)
     
 };
 
