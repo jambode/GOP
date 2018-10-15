@@ -2,16 +2,15 @@
 #include "tabellone.h"
 using namespace std;
 
-void tabellone::genera_tabellone(){
+void tabellone::genera_tabellone(int num_caselle){
 	p = new casella;
-    int num_caselle = return_caselle();
     cout << "numero caselle: " << num_caselle << endl;
     head = p;
     n = p;
     p->prec = NULL;
     int tmp;
     tmp = 1;
-    while(i > 0){
+    while(num_caselle > 0){
         n = p;
         p->val = tmp;
         tmp += 1;
@@ -20,7 +19,7 @@ void tabellone::genera_tabellone(){
         n->prec = p;
         p = n;
         p->next = NULL;
-        i--;
+        num_caselle--;
         }
 }
 
