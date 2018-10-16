@@ -51,7 +51,7 @@ void inizializza_giocatori::posizione_corrente(int num){
 	dado d;
 	    turno = 0;
         int t = set_turno();
-        int j = 0;
+        //int j = 0;
         int fw_or_bw[num];
         //int pos_corr[1000]; 
         int i = 0;
@@ -59,9 +59,8 @@ void inizializza_giocatori::posizione_corrente(int num){
         int num_caselle = tab.return_caselle();
         cout<<"numero caselle "<<num_caselle<<endl;
 	    
-	   // tab.stampa_tabellone();
         while(p[i]->pos != num_caselle){
-		tab.genera_tabellone(num_caselle);
+	tab.genera_tabellone(num_caselle);
         cout<<"---------------------------------------------------------"<<endl;
         cout<<"TURNO "<<t++<<endl;
 		for(i=0; i<num; i++){
