@@ -37,7 +37,7 @@ void effetti::salta_turno(){
 
 //RITORNA UN NUMERO E IL GIOCATORE VA AVANTI/INDIETRO IN BASE A QUEL NUMERO
 int effetti::fortuna(int num){
-	cout<<"FORTUNA O SFORTUNA? ";
+	//cout<<"FORTUNA O SFORTUNA? ";   messo nella funzione a parte
 
 	
 	int player_pos = rand()%num+1;
