@@ -3,10 +3,10 @@
 #include <iostream>
 #include <cstring>
 #include <ctime>
-#include "dado.cpp"
-#include "player.cpp"
-#include "effetti.cpp"
+#include"player.h"
 #include "tabellone.cpp"
+#include "effetti.cpp"
+#include "dado.cpp"
 using namespace std;
 
 class inizializza_giocatori{
@@ -17,7 +17,7 @@ public:
 	char N[50];
     int num_giocatori ;
     effetti e;
-    int turno = 0;
+    int turno ;
     tabellone tab;
     int decidi_numero_giocatori();
 	int return_num_giocatori();
@@ -29,7 +29,7 @@ public:
     int set_turno();
 	int return_turn();
 	
-    void turni(int num);
+    void posizione_corrente(int num);
 
 
 
@@ -47,5 +47,5 @@ public:
  */  
 
 };
-
+#include "inizializza_player.cpp"
 #endif /* inizializza_player_h */
