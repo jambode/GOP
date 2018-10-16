@@ -23,6 +23,6 @@ int main() {
     
     // turno turn;
    // turn.inizio_turno(num_player);
-    init.posizione_corrente(num_player);
+    init.turni(num_player);
     return 0;
 }
