@@ -2,7 +2,10 @@
 #include "inizializza_player.h"
 using namespace std;
 
+
+
 int inizializza_giocatori::decidi_numero_giocatori(){
+
 	cout << "decidi il numero dei giocatori: ";
             cin >> num_giocatori;                                           //numero giocatori
             if (num_giocatori < 2){
@@ -44,8 +47,9 @@ int inizializza_giocatori::return_turn(){
 }
 
 
-void inizializza_giocatori::turni(int num){   
+void inizializza_giocatori::posizione_corrente(int num){
 	dado d;
+	    turno = 0;
         int t = set_turno();
         int j = 0;
         int fw_or_bw[num];
@@ -54,12 +58,13 @@ void inizializza_giocatori::turni(int num){
         
         int num_caselle = tab.return_caselle();
         cout<<"numero caselle "<<num_caselle<<endl;
-	
 	    
+	   // tab.stampa_tabellone();
         while(p[i]->pos != num_caselle){
+		tab.genera_tabellone(num_caselle);
         cout<<"---------------------------------------------------------"<<endl;
         cout<<"TURNO "<<t++<<endl;
-		for(int i=0; i<num; i++){
+		for(i=0; i<num; i++){
 		
 		
         int num_estratto= d.lancia_dado();
@@ -96,35 +101,12 @@ void inizializza_giocatori::turni(int num){
 			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
 			cout<<"\n";
 		}
-    /*	else if(p[i]->pos%4==0){      //condizione casella pesca carta
+    	else if(p[i]->pos==13){      //condizione casella pesca carta
 			e.pesca_carta();
 			p[i]->pos = p[i]->pos + p[i]->pos;
 			cout<<"posizione giocatore: "<<p[i]->pos<<endl;
 		}
-		
-/*		//CONDIZIONE SALTA TURNO
-		else if(pos%10==0){
-			e.salta_turno();
-			int turno = return_turno();
-			
-		}*/
-		//CONDIZIONE SCAMBIA POSTO GIOCATORI
-		else if(p[i]->pos==13 || p[i]->pos==11 || p[i]->pos == 23){
-			int pl = rand()%num_giocatori+1;
-			int temp;
-			if(pl!= i){
-			temp = p[i]->pos;
-			p[i]->pos = p[pl]->pos;
-			p[pl]->pos = temp;
-			cout<<"SCAMBIA CON "<<pl+1<<endl;
-			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-			cout<<"posizione giocatore "<<pl+1<<": "<<p[pl]->pos<<endl;
-		    }
-		    else {
-			cout<<"SEI STATO FORTUNATO, RIMANI AL TUO POSTO!! "<<endl;
-		    cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
-		    }  
-		}
+
 		
 		//CONDIZIONE CHE PERMETTE DI ANDARE AVANTI/INDIETRO RANDOM
 		else if(p[i]->pos%4==0 && t>1){
@@ -148,6 +130,36 @@ void inizializza_giocatori::turni(int num){
 	
 		cout<<"\n";
 } 
+    tab.stampa_tabellone();
+}
+    
+}
 
-}
-}
+
+
+//          PROVE DI EFFETTI           //
+
+		
+/*		//CONDIZIONE SALTA TURNO
+		else if(pos%10==0){
+			e.salta_turno();
+			int turno = return_turno();
+			
+		}*/
+		//CONDIZIONE SCAMBIA POSTO GIOCATORI
+	/*	else if(p[i]->pos==13 || p[i]->pos == 23){
+			int pl = rand()%num_giocatori+1;
+			int temp;
+			if(pl!= i){
+			temp = p[i]->pos;
+			p[i]->pos = p[pl]->pos;
+			p[pl]->pos = temp;
+			cout<<"SCAMBIA CON "<<pl+1<<endl;
+			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+			cout<<"posizione giocatore "<<pl+1<<": "<<p[pl]->pos<<endl;
+		    }
+		    else {
+			cout<<"SEI STATO FORTUNATO, RIMANI AL TUO POSTO!! "<<endl;
+		    cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
+		    }  
+		}*/
