@@ -44,7 +44,7 @@ int inizializza_giocatori::return_turn(){
 }
 
 
-void inizializza_giocatori::posizione_corrente(int num){
+void inizializza_giocatori::turni(int num){   
 	dado d;
         int t = set_turno();
         int j = 0;
@@ -67,7 +67,7 @@ void inizializza_giocatori::posizione_corrente(int num){
         p[i]->pos = p[i]->vai_avanti_n_caselle(num_estratto);
     	
     	//cout<<"pos_corr[j] giocatore "<<i+1<<": ";
-    	//CONDIZIONE CHE PERMETTE DI STABILIRE CHE UN GIOCATORE è ARRIVATO AL TRAGUARDO.
+    	//CONDIZIONE CHE PERMETTE DI STABILIRE CHE UN GIOCATORE Ã¨ ARRIVATO AL TRAGUARDO.
     		if(p[i]->pos == num_caselle){
     			cout<<"posizione giocatore "<<i+1<<": "<<p[i]->pos<<endl;
     	cout<<"giocatore "<<i+1<<" SEI ARRIVATO! "<<endl;
