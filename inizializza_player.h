@@ -29,7 +29,7 @@ public:
     int set_turno();
 	int return_turn();
 	
-    void posizione_corrente(int num);
+    void turni(int num);
 
 
 
