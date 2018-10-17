@@ -45,3 +45,59 @@ int effetti::fortuna(int num){
 	return player_pos;
 }
 
+void gestisci_carta(){
+	mazzo m;
+	effetti e;
+	player p;
+	inizializza_giocatori iniz;
+	carta carta_corrente;
+	m.estrai_in_cima();
+	bool result;
+	int n=carta_corrente.getvalore();
+
+	switch (n){
+		case 0:e.tira_di_nuovo();// ritira dado
+			break;
+		case 1:e.vai_avanti(int pos);
+			break;
+		case 2: 
+			p.pos=0; //torna alla casella di partenza
+			break;
+		case 3://stai fermo un turno
+				bool fermo=flase;
+				counter=0;
+				if (n!=3){ //se la carta non ha il messaggio "salta turno"
+					fermo==false;
+					for (counter<=num_giocatori){			 
+					 iniz.turni();//fai turno normale 
+					counter ++;
+			 			}
+				}
+			 	else if (c.valore==3){ //la carta ha il messaggio "salta turno"
+			 		fermo==true;
+			 		while (counter!= iniz.num_giocatori){
+			 				for(counter!= /*numero giocatore che becca il salto)*/, couter++){
+							iniz.turni();//esegui il turno
+			 				}
+			 			counter ++;
+					}}
+			break;
+		case 4:e.vai_indietro(int pos);
+			break;
+		case 5://rispondi alla domanda
+				result= gestione_domanda();
+	        	if (result==true){
+	            	e.vai_avanti();
+	             	} 
+			 	else {
+				   e.vai_indietro();
+				 } 
+		  	    break;
+	
+
+			break; 
+} 
+	return ;
+}
+#endif 
+
