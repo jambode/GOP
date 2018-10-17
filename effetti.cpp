@@ -52,13 +52,22 @@ void gestisci_carta(){
 	inizializza_giocatori iniz;
 	carta carta_corrente;
 	m.estrai_in_cima();
+	int k=3; 
 	bool result;
 	int n=carta_corrente.getvalore();
 
 	switch (n){
 		case 0:e.tira_di_nuovo();// ritira dado
 			break;
-		case 1:e.vai_avanti(int pos);
+		case 1://vai avanti   
+			cout<<"vai avanti di 3 caselle"<<endl;                                                                   
+			if ((pos+k)>=p[i]->pos /* ultima casella*/){
+				pos= (2*(p[i]->pos)-(pos+k));//se il n del dado è troppo per arrivare alla fine del tabellone
+			}
+			else 
+				pos=pos+k; 
+			return pos;                                                  
+			}
 			break;
 		case 2: 
 			p.pos=0; //torna alla casella di partenza
@@ -82,7 +91,15 @@ void gestisci_carta(){
 			 			counter ++;
 					}}
 			break;
-		case 4:e.vai_indietro(int pos);
+		case 4:
+			cout<<"vai indietro di 3 caselle"<<endl;                                                                   
+			if ((pos-k)<= 0 /*prima casella*/){
+				pos=0; //se il numero viene negativo prende 0
+			}
+			else 
+				pos=pos-k; 
+			return pos;                                                  
+			}
 			break;
 		case 5://rispondi alla domanda
 				result= gestione_domanda();
@@ -100,4 +117,3 @@ void gestisci_carta(){
 	return ;
 }
 #endif 
-
