@@ -1,12 +1,9 @@
 #include "carta.h"
 #include "domande.h"
-#include "effetti.h"
 #include <iostream>
 #include <string>
-
-using namespace std;
-
-	domanda vect_dom[NUM_TOT_DOM]={
+ using namespace std;
+ 	domanda vect_dom[NUM_TOT_DOM]={
 	/*1° domanda*/{"Se lo alimenti vive, se gli dai da bere muore ",/* lista risposte*/{
 						" a - Gas ",
 						" b - Fuoco ",
@@ -34,8 +31,7 @@ using namespace std;
 						" c - La quercia",
 						" d - La montagna"	}, /* fine lista risposte 2° domanda*/ 
 		/*risposta esatta*/ 'd'},/*fine 4° domanda	
-
-	/*5° domanda*/{"Vado avanti vado indietro corro e mi fermo ma non cambio mai di posto. Chi sono? ", /* lista risposte*/{
+ 	/*5° domanda*/{"Vado avanti vado indietro corro e mi fermo ma non cambio mai di posto. Chi sono? ", /* lista risposte*/{
 						" a - La lancetta",
 						" b - La freccia",
 						" c - Il pendolo",
@@ -48,8 +44,7 @@ using namespace std;
 						" c - Tutti",
 						" d - Quattro"	}, /* fine lista risposte 2° domanda*/ 
 		/*risposta esatta*/ 'c'},/*fine 6° domanda	
-
-	/*7° domanda*/{"Tutti mi sanno saprire, nessuno mi sa richiudere, non sto in piedi dritto e se mi rompi, a volte, sono fritto, chi sono?", /* lista risposte*/{
+ 	/*7° domanda*/{"Tutti mi sanno saprire, nessuno mi sa richiudere, non sto in piedi dritto e se mi rompi, a volte, sono fritto, chi sono?", /* lista risposte*/{
 						" a - L'uovo",
 						" b - La busta",
 						" c - La bottiglia",
@@ -62,8 +57,7 @@ using namespace std;
 						" c - I gomiti",
 						" d - I piedi"	}, /* fine lista risposte 2° domanda*/ 
 		/*risposta esatta*/ 'd'},/*fine 8° domanda	
-
-	/*9° domanda*/{"Lo puoi piantare, ma non crescerà; ha una testa ma mai ragionerà, chi è?", /* lista risposte*/{
+ 	/*9° domanda*/{"Lo puoi piantare, ma non crescerà; ha una testa ma mai ragionerà, chi è?", /* lista risposte*/{
 						" a - Il moscerino",
 						" b - Il chiodo",
 						" c - Il seme",
@@ -88,48 +82,36 @@ using namespace std;
                 NOTA :    (SI POTREBBE PENSARE DI FARE GESTIRE LE AZIONI CORRISPONDENTI: 
 		 N PASSI AVANTI   o N PASSI INDIETRO  direttamente QUI)
 	*/
-
-bool gestione_domanda(){
+ bool gestione_domanda(){
     int num_dom;   //indicherà il numero della domanda da fare  sarà  0<  num_dom  <NUM_TOT_DOM
     char risp=' ';
-    effetti e;
 	
  	num_dom = (rand() % NUM_TOT_DOM) ;
 	cout<<" domanda num:  "   << num_dom<<endl;
-
-	cout<< vect_dom[num_dom].doman<< endl <<endl;
-
-     for(int i=0;i<NUM_RISP;i++){
+ 	cout<< vect_dom[num_dom].doman<< endl <<endl;
+      for(int i=0;i<NUM_RISP;i++){
      	cout<< vect_dom[num_dom].risposta[i]<< endl ;
 	 }
             cout<<endl;
-
-// GESTIONE RISPOSTA 
-
-cout<< "INSERIRE LA RISPOSTA ESATTA (inserire  la lettera corrispondente : a,b,c,d  )  :   ";
+ // GESTIONE RISPOSTA 
+ cout<< "INSERIRE LA RISPOSTA ESATTA (inserire  la lettera corrispondente : a,b,c,d  )  :   ";
 cin>> risp;
 while(cin.fail()|| risp<'a'||risp>'d'){
 	cout<< " Imput non valido"<<endl<<endl;
 	cout<<"  Inserire una delle seguenti lettere minuscole : a,b,c,d  :  ";
 	cin>>risp;
 } /* End while controllo risposta valida*/
-
-if(risp==vect_dom[num_dom].risp_esatta){ 
+ if(risp==vect_dom[num_dom].risp_esatta){ 
 // RISPOSTA ESATTA
 	cout<<" Risposta esatta !!! "<<endl<<endl;
 	cin.ignore();  // NON SO BENE SE SERVE???
 	// viene eventualmente invocata la funzione che gestisce la risposta esatta  oppure return true
-	e.vai_avanti(int pos);
 	return true;
 }else{
 // RISPOSTA ERRATA
 	cout<<" Risposta è errata  !!! "<<endl<<endl;
 	cin.ignore();  // NON SO BENE SE SERVE???
 	// viene eventualmente invocata la funzione che gestisce la risposta esatta  oppure return true
-	e.vai_indietro(int pos);
 	return false;
 }
-
-}
-
-
+ }
