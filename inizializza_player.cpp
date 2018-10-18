@@ -243,3 +243,4 @@ int inizializza_giocatori::return_caselle(){
         i = (rand() % 20) + 41;
         return i;
 }
+

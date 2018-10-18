@@ -27,3 +27,4 @@ class carta{
 #include"carta.cpp"
 #endif 
 
+

@@ -48,4 +48,3 @@ public:
 #include "mazzo_carte.cpp"
 #endif /* mazzo_carte_h */
 
-

@@ -28,3 +28,4 @@ class effetti{
 
 
 #endif /*EFFETTI_H*/
+

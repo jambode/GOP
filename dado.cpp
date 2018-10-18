@@ -10,3 +10,4 @@ int dado::lancia_dado(){
 	dice = (rand() % 6) + 1;
     return dice;
 }
+

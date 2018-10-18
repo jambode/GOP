@@ -54,3 +54,4 @@ int player::somma_pos(int n){
 int player::indietro_n_caselle(int i){
 	return pos-i;
 }
+

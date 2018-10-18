@@ -9,13 +9,13 @@ using namespace std;
 class player{
 protected:
    
-    
     int turno ;
 public: 
     int pos;
      char name[50];
     //dado d;
     //player();
+
     player(int p, char n[]);
     void presenta_giocatore();
     

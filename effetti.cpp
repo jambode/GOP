@@ -1,3 +1,4 @@
+
  #include<iostream>
  #include "effetti.h"
  
@@ -43,3 +44,4 @@ int effetti::fortuna(int num){
  	
  	return player_pos;
  }
+
