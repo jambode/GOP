@@ -4,21 +4,40 @@
 #include <cstring>
 #include <ctime>
 #include"player.h"
-#include "tabellone.cpp"
 #include "effetti.cpp"
 #include "dado.cpp"
 using namespace std;
 
-class inizializza_giocatori{
 
-public:
-    player *p[100];
+
+struct casella{
+    int val;
+    casella *next;
+    casella *prec;
+};
+typedef casella* ptr_casella;
+
+
+
+class inizializza_giocatori{
+    ptr_casella head, p, n;
+    effetti e;
+    player *gioc[100];
+public: 
+
+	int i;          // numero caselle random
+	int num_cas;
+	char x;
+	//FUNZIONI PER IL TABELLONE
+    void genera_tabellone(int num_cas);
+    bool stampa_tabellone();
+    int return_caselle();
+    bool termina = false;
+    //FUNZIONI PER I GIOCATORI
     int posizione; 
 	char N[50];
     int num_giocatori ;
-    effetti e;
     int turno ;
-    tabellone tab;
     int decidi_numero_giocatori();
 	int return_num_giocatori();
     
