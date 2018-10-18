@@ -1,63 +1,70 @@
-#ifndef inizializza_player_h
-#define inizializza_player_h
+#ifndef _INIZIALIZZA_PLAYER_H
+#define _INIZIALIZZA_PLAYER_H
 #include <iostream>
 #include <cstring>
-#include "player.h"
+#include <ctime>
+#include"player.h"
+#include "effetti.cpp"
+#include "dado.cpp"
 using namespace std;
 
+
+
+struct casella{
+    int val;
+    casella *next;
+    casella *prec;
+};
+typedef casella* ptr_casella;
+
+
+
 class inizializza_giocatori{
-public:
-    player *p[100];
+    ptr_casella head, p, n;
+    effetti e;
+    player *gioc[100];
+public: 
+
+	int i;          // numero caselle random
+	int num_cas;
+	char x;
+	//FUNZIONI PER IL TABELLONE
+    void genera_tabellone(int num_cas);
+    bool stampa_tabellone();
+    int return_caselle();
+    bool termina = false;
+    //FUNZIONI PER I GIOCATORI
     int posizione; 
-	string N;
+	char N[50];
     int num_giocatori ;
+    int turno ;
+    int decidi_numero_giocatori();
+	int return_num_giocatori();
+    
+    
+    void inizializza_player();
+    void stampa_giocatori();
+  
+    int set_turno();
+	int return_turn();
+	
+    void posizione_corrente(int num);
 
-    int decidi_numero_giocatori(){
 
-        
-            cout << "decidi il numero dei giocatori: ";
-            cin >> num_giocatori;                                           //numero giocatori
-            if (num_giocatori < 2){
-                cout << "i giocatori devono essere almeno 2." << endl;
-                num_giocatori = 0;
-            }
-        return num_giocatori ;
-    }
-    
-	int return_num_giocatori(){
-     return num_giocatori;
-    }
-    
-    
-    void inizializza_player(){
-        for(int i = 0; i < num_giocatori; i++){
-            cout << "inserisci nome giocatore " << i+1 << ": ";
-            cin >> N;
-            posizione = 0;
-            p[i] = new player(posizione, N);
-        }
-    }
-    void stampa_giocatori(){
-        for(int i = 0; i < num_giocatori; i++){
-            cout << "nome giocatore " << i+1 << ": ";
-            p[i]->presenta_giocatore();
-            cout << endl;
-        }
-    }
-  /*  void muoviGiocatore(int passi){
+
+/*    
+    void turns(){
+    	int num_caselle = tab.return_caselle();
+    	cout<<"caselle "<<num_caselle;
     	for(int i=0; i<num_giocatori; i++){
-    	int nuova_pos = p[i]->ritorna_pos()+passi;
-    	if (nuova_pos<0)
-    	nuova_pos = 0;
-    	p[i]->player(nuova_pos);
-    	cout<<"casella "<<p[i]->ritorna_pos()<< ": ";
-	}
-    /* int vai_avanti_a(int n){
-        posizione += n;
-        return posizione;
-    }*/
+    	while(p[i]->pos < num_caselle)
+    	posizione_corrente(num_giocatori);
+    
+    		
+}
+}
+ */  
 
 };
-
-
+#include "inizializza_player.cpp"
 #endif /* inizializza_player_h */

@@ -1,42 +1,51 @@
-#ifndef mazzo_carte_h
-#define mazzo_carte_h
+#ifndef MAZZO_CARTE_H
+#define MAZZO_CARTE_H
+#include <cstring>
 #include <iostream>
+#include "carta.h"
+#define NUM_RISP 4	// numero possibili risposte per ogni domanda
+#define NUM_TOT_DOM 10	// numero totale domande  20  per test  3
+#include "effetti.h"
 using namespace std;
 
-struct lista{
-    int val;        //azione da far eseguire per le carte
-    lista *next;
-};
 
-typedef lista* ptr_lista;
+
+// il mazzo viene implementato come una classe :un array di cartE E I vari metodi
+
+/*
+struct domanda{
+	    string doman;
+	    string risposta[NUM_RISP];
+	    char risp_esatta;
+	  	
+	};
+
+*/
 
 class mazzo{
+    protected: 
+        carta carte[NUMCARTE];
+	    int  num_cartacorrente;
+	   
+
 public:
-    ptr_lista head, p;
-    void Lista(){
-        p = new lista;
-        head = p;
-        for (int i = 0; i <= 40; i++){
-            p->val = 0;
-            p->next = new lista;
-            p = p->next;
-            p->next = head;
-        }
-    }
-    int pesca_carta(){            //rimozione in testa, inserimento in coda
-        ptr_lista tmp = head;
-        head = head->next;
-        while(p->next != NULL){
-            p = p->next;
-        }
-        p->next = new lista;
-        p = p->next;
-        p->val = tmp->val;
-        p->next = NULL;
-        delete tmp;
-        return p->val;         //sbagliato: non puntatore, ma valore
-    }
-};
+	carta temp;
+	//domanda d;
+	mazzo();  // COSTRUTTORE
+	void crea_mazzo();
+	void mischia_mazzo();
+	void scambia_carta(int i, int J);
+	carta estrai_in_cima(); // estrae la carta dalla prima posizione poi la mette all'ultimo
+							//posto facendo slittare tutti i valori di un posto in avanti
+	void inserisci_in_fondo(); // NON IMPLEMENTATA DA TOGLIERE
+	string msg_carte(int num);
+// servono  per i test sulla classe mazzo	
+	void stampa_mazzo();   
+	carta estrai_carta(int i);
+//	bool gestione_domanda(domanda d);
+	};
 
-
+#include "mazzo_carte.cpp"
 #endif /* mazzo_carte_h */
+
+
