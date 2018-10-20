@@ -8,11 +8,12 @@
 using namespace std;
 
 int main(){
+	char start;
     inizializza_giocatori init;
     init.decidi_numero_giocatori();
     init.inizializza_player();
-    init.stampa_giocatori();
-     int num_player = init.return_num_giocatori();
+   // init.stampa_giocatori();
+    int num_player = init.return_num_giocatori();
     // int num_turno = 0;
     // domanda d;
      //d.gestione_domanda();
@@ -31,11 +32,19 @@ int main(){
     
 /*    mazzo m;
     m.crea_mazzo();
-    m.estrai_in_cima();
+    m.stampa_mazzo();
+   // m.gestione_domanda();
+   // m.pesca_carta();
     m.mischia_mazzo();
     cout<<"MISCHIO MAZZO "<<"\n";
     m.stampa_mazzo();
-    cout<<"SCAMBIO CARTEEEE"<<"\n"<<"\n";
+    m.mischia_mazzo();
+    cout<<"MISCHIO MAZZO "<<"\n";
+    m.stampa_mazzo();
+    m.mischia_mazzo();
+    cout<<"MISCHIO MAZZO "<<"\n";
+    m.stampa_mazzo();
+  /*  cout<<"SCAMBIO CARTEEEE"<<"\n"<<"\n";
     m.scambia_carta(2, 4);
     m.stampa_mazzo();
     cout<<"\n"<<"\n";
@@ -51,7 +60,11 @@ int main(){
     init.posizione_corrente(num_player);
     num_turno ++;
 }*/
-    init.posizione_corrente(num_player);
+	cout<<"premi a per iniziare "<<endl;
+	cin>>start;
+	if(start=='a')
+    	init.posizione_corrente(num_player);
+   
      
    /* domanda d;
     gestione_domanda(d);
