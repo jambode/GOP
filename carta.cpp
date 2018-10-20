@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 #include <ctime>
+#include <cstdlib>
+#include <cstring>
 #include "carta.h"
 
 using namespace std;
@@ -11,21 +13,20 @@ void carta::set_valore(){
 }
 
 void carta::set_message(string m){
-	msg = m;
+ 	msg = m;
 	}
 
 
 int carta::getvalore(){
 	return valore;
 }
-/*
-char carta::getmsg(){
+
+string carta::getmsg(){
 	return msg;
-}*/
+}
 
 // SERVE PER I TEST stampa il valore di una carta 
 	void carta::stampa_carta (){
-		cout<< " num carta =  "   <<valore << "    "<<"messaggio =  "<<msg <<"\n";
+		cout<<"messaggio =  "<<msg <<"\n";
 		
 	}
-
