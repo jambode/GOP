@@ -6,6 +6,7 @@
 #include"player.h"
 #include "effetti.cpp"
 #include "dado.cpp"
+#include "mazzo_carte.h"
 using namespace std;
 
 
@@ -23,6 +24,7 @@ class inizializza_giocatori{
     ptr_casella head, p, n;
     effetti e;
     player *gioc[100];
+    mazzo m;
 public: 
 
 	int i;          // numero caselle random
@@ -32,7 +34,7 @@ public:
     void genera_tabellone(int num_cas);
     bool stampa_tabellone();
     int return_caselle();
-    bool termina = false;
+    bool termina;
     //FUNZIONI PER I GIOCATORI
     int posizione; 
 	char N[50];
@@ -49,7 +51,8 @@ public:
 	int return_turn();
 	
     void posizione_corrente(int num);
-
+    //FUNZIONE PER GLI EFFETTI DELLE CARTE
+    int effetti_carta(int valore);
 
 
 /*    
