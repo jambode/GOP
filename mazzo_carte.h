@@ -6,13 +6,14 @@
 #define NUM_RISP 4	// numero possibili risposte per ogni domanda
 #define NUM_TOT_DOM 10	// numero totale domande  20  per test  3
 #include "effetti.h"
+#include "player.h"
 using namespace std;
 
 
 
 // il mazzo viene implementato come una classe :un array di cartE E I vari metodi
 
-/*
+
 struct domanda{
 	    string doman;
 	    string risposta[NUM_RISP];
@@ -20,7 +21,7 @@ struct domanda{
 	  	
 	};
 
-*/
+
 
 class mazzo{
     protected: 
@@ -30,6 +31,8 @@ class mazzo{
 
 public:
 	carta temp;
+	player *p;
+	effetti e;
 	//domanda d;
 	mazzo();  // COSTRUTTORE
 	void crea_mazzo();
@@ -42,7 +45,8 @@ public:
 // servono  per i test sulla classe mazzo	
 	void stampa_mazzo();   
 	carta estrai_carta(int i);
-//	bool gestione_domanda(domanda d);
+	bool gestione_domanda();
+	int pesca_carta();
 	};
 
 #include "mazzo_carte.cpp"
