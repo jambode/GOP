@@ -1,4 +1,3 @@
-
  #include<iostream>
  #include "effetti.h"
  
@@ -22,14 +21,14 @@
  void effetti::salta_turno(){
  	
  }
- */
+ 
  void effetti::pesca_carta(){
      m.crea_mazzo();
      cout<<"CARTA ESTRATTA: "<<endl;
  	card = m.estrai_in_cima();
  	//card.stampa_carta();
  }
- 
+ */
  /*
  void effetti::salta_turno(){
  	cout<<"STOP per un turno :( "<<endl;
@@ -44,4 +43,3 @@ int effetti::fortuna(int num){
  	
  	return player_pos;
  }
-
