@@ -1,5 +1,5 @@
-Gioco dell'oca pazza.
-=====
+**Gioco dell'oca pazza.**
+
 
 **Introduzione**
 -----
