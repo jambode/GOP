@@ -26,6 +26,7 @@ Il tema è l'antico Egitto con i suoi misteri.
    *  Fortuna.
    
   **Gestione dell'eseguibile**
+  ------
   Ad inizio partita viene chiesto di inserire il numero di giocatori desiderato (>=2), e successivamente di inserire i 
   loro nomi rispettivamente , i quali li contraddistingueranno durante il gioco per i loro spostamenti.
   Una volta inizializzati i giocatori si procede lanciando il dado per ognuno e alla fine del turno viene chiesto di 
