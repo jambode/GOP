@@ -2,8 +2,8 @@
 **INTRODUZIONE**
 -----
 Versione digitale del gioco dell’oca con alcune variazioni.
-Per la realizzazione del progetto ci siamo serviti della piattaforma GitHub
--GitHub:  <https://github.com/jambode/GOP>
+* Per la realizzazione del progetto ci siamo serviti della piattaforma GitHub
+   * GitHub:  <https://github.com/jambode/GOP>
 
 **Tema**
 Il tema è l'antico Egitto con i suoi misteri.  
