@@ -18,7 +18,7 @@ Il tema è l'antico Egitto con i suoi misteri.
    *  Avanza;
    *  Torna indietro;
    *  Torna all’inizio;
-   *  Salta il turno;
+   *  Scambia posizione con un'altro giocatore;
    *  Rispondi alla domanda;
  * Azioni delle caselle:
    *  Vai avanti;
@@ -26,10 +26,10 @@ Il tema è l'antico Egitto con i suoi misteri.
    *  Tira ancora il dado;
    *  Salta il turno;
    *  Pesca una carta;
-   *  Fortuna.
+   *  Vai alla casella n.
    
-  **Gestione dell'eseguibile**
-  ------
+  ## Gestione dell'eseguibile
+
   Ad inizio partita viene chiesto di inserire il numero di giocatori desiderato (>=2), e successivamente di inserire i 
   loro nomi rispettivamente , i quali li contraddistingueranno durante il gioco per i loro spostamenti.
   Una volta inizializzati i giocatori si procede lanciando il dado per ognuno e alla fine del turno viene chiesto di 
@@ -38,7 +38,7 @@ Il tema è l'antico Egitto con i suoi misteri.
   Alla fine del turno viene chiesto se si vuole continuare o meno il gioco, premendo _"y"_ si continua, premendo _"n"_ si esce dal
   gioco.
   
-  **Componenti del gruppo**
+  ## Componenti del gruppo
   * Claudia Agostini
   * Martina Dell'Elce
   * Federico Augelli
