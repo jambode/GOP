@@ -32,7 +32,8 @@ Il tema è l'antico Egitto con i suoi misteri.
   Una volta inizializzati i giocatori si procede lanciando il dado per ognuno e alla fine del turno viene chiesto di 
   premere un tasto per stampare il tabellone 
   con le rispettive posizioni. 
-  Alla fine del turno viene chiesto se si vuole continuare o meno il gioco, premendo Y si continua, premendo N si esce dal gioco.
+  Alla fine del turno viene chiesto se si vuole continuare o meno il gioco, premendo _"y"_ si continua, premendo _"n"_ si esce dal
+  gioco.
   
   **Componenti del gruppo**
   * Claudia Agostini
