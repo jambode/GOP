@@ -2,7 +2,7 @@
 -----
 
 **INTRODUZIONE**
-Versione digitale del gioco dell’oca con alcune variazioni.
+* Versione digitale del gioco dell’oca con alcune variazioni.
 * Per la realizzazione del progetto ci siamo serviti della piattaforma GitHub
    * GitHub:  <https://github.com/jambode/GOP>
 
