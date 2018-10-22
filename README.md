@@ -1,7 +1,7 @@
 Gioco dell'oca pazza.
 =====
 
-**INTRODUZIONE**
+**Introduzione**
 -----
 Versione digitale del gioco dell’oca con alcune variazioni.
 * Per la realizzazione del progetto ci siamo serviti della piattaforma GitHub
