@@ -1,5 +1,6 @@
 //player.cpp
 #include<iostream>
+
 using namespace std;
 
 
@@ -37,17 +38,6 @@ int player::vai_a_casella(int i){
 
 int player::vai_avanti_n_caselle(int i){
 	return pos + i;
-}
-
-int player::vuota(){
-    cout << "casella vouta." << endl;
-    return pos;	
-}
-
-
-int player::somma_pos(int n){
-	pos = n + pos;
-    return pos;
 }
 
 
