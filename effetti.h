@@ -6,7 +6,6 @@
 using namespace std;
 
 class effetti{
-
 	player *p[100];
 	
 	public:
