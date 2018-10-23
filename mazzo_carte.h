@@ -2,10 +2,10 @@
 #define MAZZO_CARTE_H
 #include <cstring>
 #include <iostream>
-#include<ctime> // per time()
+#include<ctime>
 #include<cstdlib>
 #define NUM_RISP 4	// numero possibili risposte per ogni domanda
-#define NUM_TOT_DOM 10	// numero totale domande  20  per test  3
+#define NUM_TOT_DOM 10	// numero totale domande  20 
 #include "carta.h"
 #include "effetti.h"
 #include "player.h"
@@ -19,7 +19,7 @@ using namespace std;
 struct domanda{
 	    string doman;
 	    string risposta[NUM_RISP];
-	    char risp_esatta;
+	    string risp_esatta;
 	  	
 	};
 
@@ -40,7 +40,7 @@ class mazzo{
 		void mischia_mazzo();
 		void scambia_carta(int i, int J);
 		carta estrai_in_cima(); // estrae la carta dalla prima posizione poi la mette all'ultimo
-				        //posto facendo slittare tutti i valori di un posto in avanti
+								//posto facendo slittare tutti i valori di un posto in avanti
 								
 		
 		string msg_carte(int num); 	
