@@ -1,9 +1,4 @@
-#include <cstring>
-#include <iostream> 
-#include<ctime> // per time()
-#include<cstdlib>
-#include "mazzo_carte.h"
-
+//mazzo_carte.cpp
 using namespace std;
 
 
@@ -12,26 +7,23 @@ string  mazzo::msg_carte(int num){
 	bool result;
 	switch (num){
 		case 0:	str = "ritira il dado";
-		        //e.tira_di_nuovo();
 				break;
+				
 		case 1:  str = "rispondi alla domanda";
-			/*	result = gestione_domanda();
-				if(result == true)
-					p->avanza_uno();
-				else
-					p->indietro_uno();*/
 		  	    break;
-		case 2: str = "ritorna alla casella 0";
-				//p->pos = 0;	
+		  	    
+		case 2: str = "ritorna alla casella di partenza";
 		  	    break;
+		  	    
 		case 3: str = "fai 3 passi in avanti";	
-		        //p->pos = p->vai_avanti_n_caselle(3);  
 		  	    break;
+		  	    
 		case 4: str = "fai 3 passi indietro";
-				//p->pos= p->indietro_n_caselle(3);	
-		  	    break;
+				break;
+				
 		case 5: str = "scambia posizione con un altro giocatore";	
 		  	    break;	    
+		  	    
 		default: cout<<"errore" 	;
 		
 		 	    
@@ -42,8 +34,8 @@ string  mazzo::msg_carte(int num){
 mazzo::mazzo(){
 }
 
-// TESTATO OK
-void  mazzo::crea_mazzo(){ // costruttore : le 40 carte saranno inizializzate ciclicamente da 0......5              //FUNZIONA
+
+void  mazzo::crea_mazzo(){ // costruttore : le 40 carte saranno inizializzate ciclicamente da 0......5              
            int i=0;
 		for(int t=0; t<NUMCARTE;t++){
 		    if(i<6){
@@ -65,8 +57,7 @@ void  mazzo::crea_mazzo(){ // costruttore : le 40 carte saranno inizializzate ci
 
 	
 	
-// TESTATO OK	
-void mazzo::mischia_mazzo(){           //FUNZIONA
+void mazzo::mischia_mazzo(){           
 		int t=0;
 		int j=0;
 		srand(time(NULL));
@@ -89,7 +80,7 @@ void mazzo::mischia_mazzo(){           //FUNZIONA
 // estrae la prima carta e la rimette in fondo al mazzo = ultima  posizione	del mazzo
 // facendo slittare in avanti di una posizione tutti gli altri
 
-	carta mazzo::estrai_in_cima(){               //FUNZIONA
+	carta mazzo::estrai_in_cima(){               
 		
 	    temp=carte[0];  // estraggo la prima ( poi la rimetto  in fondo)
 	  //TEST
@@ -99,43 +90,20 @@ void mazzo::mischia_mazzo(){           //FUNZIONA
 	    for(int i=0;i<NUMCARTE-1; i++) // faccio slittare di uno a sinistra tutto l'array
 	   	  carte[i]=carte[j++];
 	   	 // TEST
-	   	 cout<<"\n"<<"\n";
+	   	 cout<<"\n";
 	   	carte[j-1] =temp; //copio l'elemento selezionato nell'ultima posizione
 	   	//carte[j-1].stampa_carta();
 		return(temp);
 	};
 	
 	
-	
-	void mazzo::inserisci_in_fondo(){
-		
-	};
 
-// serve per i test
-#define CARTE_DA_STAMPARE 40
-void mazzo::stampa_mazzo(){             //FUNZIONA
+
+void mazzo::stampa_mazzo(){             
 	for(int i =0; i<NUMCARTE; i++){
 		carte[i].stampa_carta();
 	}
 }
-/*
-int temp;  non serve  ...serviva nell'altra implementazione 
-string temp_string;
-
-for(int i=0;i< CARTE_DA_STAMPARE; i++){
-	
- altra implementazione, ok anche questa
-temp = carte[i].getvalore();
-  cout<< temp  <<"  ";
-
-  cout<< carte[i].getvalore()<<"   ";
-  
-  cout <<carte[i].getmsg() <<"\n";
-  
-}
-
-};
-*/
 
 carta mazzo::estrai_carta(int i){
 	carta estr = carte[i-1];
@@ -145,7 +113,6 @@ carta mazzo::estrai_carta(int i){
 
 
 int mazzo::pesca_carta(){
-   // crea_mazzo();
     int val;
     carta card;
     mischia_mazzo();
@@ -161,8 +128,7 @@ int mazzo::pesca_carta(){
 
 
 
-// DOMANDEEE ////////
-	domanda vect_dom[NUM_TOT_DOM]={
+domanda vect_dom[NUM_TOT_DOM]={
 	/*1° domanda*/{"Se lo alimenti vive, se gli dai da bere muore ",/* lista risposte*/{
 						" a - Gas ",
 						" b - Fuoco ",
@@ -216,18 +182,18 @@ int mazzo::pesca_carta(){
 						" c - I gomiti",
 						" d - I piedi"	}, /* fine lista risposte 2° domanda*/ 
 		/*risposta esatta*/ 'd'},/*fine 8° domanda	
- 	/*9° domanda*/{"Lo puoi piantare, ma non crescerà; ha una testa ma mai ragionerà, chi è?", /* lista risposte*/{
+ 	/*9° domanda*/{"Lo puoi piantare, ma non crescera'; ha una testa ma mai ragionera', chi e'?", /* lista risposte*/{
 						" a - Il moscerino",
 						" b - Il chiodo",
 						" c - Il seme",
 						" d - L'asso"	}, /* fine lista risposte 2° domanda*/ 
 		/*risposta esatta*/ 'b'},/*fine 9° domanda	
 						
-	/*ULTIMA domanda*/{"Esisto fino a quando hai vita Ma se mi perdi non c'è più vita! ", /* lista risposte*/{
+	/*ULTIMA domanda*/{"Esisto fino a quando hai vita Ma se mi perdi non c'e' più vita! ", /* lista risposte*/{
 						" a - La speranza ",
 						" b - La gioia ",
 						" c - La tristezza",
-						" d - L'anfgoscia"},   /* fine lista risposte ULTIMA domanda X*/ 
+						" d - L'angoscia"},   /* fine lista risposte ULTIMA domanda X*/ 
 		/*risposta esatta*/ 'a'}/*fine ULTIMA domandaV*/
 	};// Fine array domande
 	
@@ -266,14 +232,14 @@ bool mazzo::gestione_domanda(){
  	if(risp==vect_dom[num_dom].risp_esatta){ 
 	// RISPOSTA ESATTA
 		cout<<" Risposta esatta !!! "<<endl<<endl;
-		cin.ignore();  // NON SO BENE SE SERVE???
+		cin.ignore();  
 		// viene eventualmente invocata la funzione che gestisce la risposta esatta  oppure return true
 		return true;
 	}
 	else{
 		// RISPOSTA ERRATA
-		cout<<" Risposta è errata  !!! "<<endl<<endl;
-		cin.ignore();  // NON SO BENE SE SERVE???
+		cout<<" Risposta e' errata  !!! "<<endl<<endl;
+		cin.ignore();  
 		// viene eventualmente invocata la funzione che gestisce la risposta esatta  oppure return true
 		return false;
 	}
@@ -281,4 +247,4 @@ bool mazzo::gestione_domanda(){
 
 
 
-// il mazzo viene implementato come una classe :un array di cartE E I vari metodi
+// il mazzo viene implementato come una classe :un array di carte e i vari metodi
