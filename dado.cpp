@@ -1,5 +1,4 @@
-#include<iostream>
-#include "dado.h"
+//dado.cpp
 using namespace std;
 
 
@@ -10,4 +9,3 @@ int dado::lancia_dado(){
 	dice = (rand() % 6) + 1;
     return dice;
 }
-
