@@ -16,15 +16,11 @@ public:
     char name[50];
     player(int p, char n[]);
     void presenta_giocatore();
-    
     int ritorna_pos();
     int indietro_uno();
     int avanza_uno();
     int vai_a_casella(int i);
-    
     int vai_avanti_n_caselle(int i);
-    int vuota();
-    int somma_pos(int n);
     int indietro_n_caselle(int i);
    
 };
