@@ -29,8 +29,9 @@ public:
 	inizializza_gioco();
 	int i;          
 	int num_cas;
-	char x;
+	string x;
 	int num_caselle;
+	int num_giocatori ;
 	//FUNZIONI PER IL TABELLONE
     void genera_tabellone(int num_cas);
     bool stampa_tabellone();
@@ -39,13 +40,13 @@ public:
     //FUNZIONI PER I GIOCATORI
     int posizione; 
 	char N[50];
-    int num_giocatori ;
     int turno ;
     int decidi_numero_giocatori();   //permette di decidere il numero di giocatori all'inzio del gioco
 	int return_num_giocatori();		//ritorna il numero di giocatori
     int quasi_arrivato(int i, int num_estr);	//funzione che permette di tornare indietro se si va oltre il numero di arrivo
     void inizializza_player(); 		//inizializza i giocatori con il proprio nome
-    void stampa_giocatori();		
+    void stampa_giocatori();	
+	void regole();	
     int set_turno();				//contatore per i turni
 	int return_turn();
     void fai_turno(int num);
