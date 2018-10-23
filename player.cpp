@@ -1,5 +1,5 @@
 #include<iostream>
-#include "player.h"
+//#include "player.h"
 using namespace std;
 
 
@@ -54,4 +54,3 @@ int player::somma_pos(int n){
 int player::indietro_n_caselle(int i){
 	return pos-i;
 }
-
