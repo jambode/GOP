@@ -1,7 +1,6 @@
- #include<iostream>
- #include "effetti.h"
+//effetti.cpp
  
- using namespace std;
+using namespace std;
  
  
  
@@ -17,23 +16,8 @@
  	pos =	pos+dice;
  	return pos;
  }
- /*
- void effetti::salta_turno(){
- 	
- }
- 
- void effetti::pesca_carta(){
-     m.crea_mazzo();
-     cout<<"CARTA ESTRATTA: "<<endl;
- 	card = m.estrai_in_cima();
- 	//card.stampa_carta();
- }
- */
- /*
- void effetti::salta_turno(){
- 	cout<<"STOP per un turno :( "<<endl;
- }
- */
+
+
  //RITORNA UN NUMERO E IL GIOCATORE VA AVANTI/INDIETRO IN BASE A QUEL NUMERO
 int effetti::fortuna(int num){
 	cout<<"FORTUNA O SFORTUNA? ";
