@@ -2,26 +2,64 @@
 using namespace std;
 
 
-inizializza_gioco::inizializza_gioco(){
+inizializza_gioco::inizializza_gioco(){     //costruttore che inizializza il numero delle caselle ad ogni partita
 	num_caselle = return_caselle();
 }
 
-int inizializza_gioco::decidi_numero_giocatori(){
+
+
+void inizializza_gioco::regole(){           //stampa le regole del gioco, se richieste
+	termina = false;
+	cout<<"Vuoi vedere le regole del gioco? Premi y/n"<<endl;
+	    while(termina==false){
+		cin>>x;
+		if(x=="y"){
+			cout<<"REGOLE DEL GIOCO"<<endl
+	            <<"Per iniziare il gioco inserire il numero di giocatori, e' necessario che i partecipanti siano almeno 2 o il gioco non proseguira'."<<endl
+	            <<"Seguendo le indicazioni sullo schermo bisognera', in seguito, inserire il nome dei giocatori."<<endl
+	            <<"-Se si desidera iniziare effettivamente giocare si prema la lettera 'a' da tastiera."<<endl
+	            <<"-Per lanciare il dado ad ogni giocatore verra' chiesto di premere un tasto qualsiasi."<<endl
+	            <<"-Alla fine di ogni turno per poter continuare a giocare si deve stampare il tabellone premendo la lettera 't'. "<<endl
+				<<"-Se si desidera uscire dal gioco prematuramente premere 'n' altrimenti 'y'."<<endl
+				<<"-Se si e' vicini alla casella di arrivo e con il lancio del dado si supera il numero necessario per vincere, il giocatore sara' rimbalzato all'indietro."<<endl
+				<<"-Quando si giunge alla casella di arrivo verra' stampato un messaggio su terminale, il primo che arriva vince il gioco."<<endl;
+				termina = true;
+		}
+	
+		else if(x == "n"){
+			cout<<"\n";
+			termina = true;
+		}
+		else{
+			cout<<"Premi y/n"<<endl;
+			termina = false;
+		}
+		cout<<"\n";
+ 	}
+ }
+
+
+int inizializza_gioco::decidi_numero_giocatori(){   //inizializza il numero dei giocatori ad ogni partita
 
 	cout << "Per iniziare decidi il numero dei giocatori: ";
-            cin >> num_giocatori;                                           //numero giocatori
-            if (num_giocatori < 2){
-                cout << "i giocatori devono essere almeno 2." << endl;
-                num_giocatori = 0;
-            }
-        return num_giocatori ;
+    cin >> num_giocatori;                                           //numero giocatori
+    while(cin.fail() || num_giocatori < 2){
+    	cin.clear();
+    	cin.ignore(256, '\n');                      //se viene inserito un carattere al posto di un numero da' errore e chiede di reinserire il numero dei giocatori
+        cout << "INPUT NON VALIDO (giocatori devono essere almeno 2). Reinserisci numero giocatori: ";
+        num_giocatori = 0;
+        cin>>num_giocatori;
+	}
+    return num_giocatori ;
 }
+
 
 int inizializza_gioco::return_num_giocatori(){
     return num_giocatori;
 }
 
-void inizializza_gioco::inizializza_player(){
+void inizializza_gioco::inizializza_player(){          //inizializza i giocatori con il loro nome e posizione corrente = 0
+
 	cout<<"\nSabah al khayr, buongiorno, io sono Anubi, dio dell'oltretomba e sorvegliero' il vostro viaggio nella buona e nella cattiva sorte"<<endl
 	    
 	    <<"Voi siete?"<<endl<<endl;
@@ -39,12 +77,13 @@ void inizializza_gioco::inizializza_player(){
 		<<"chissa' che uno di voi non riesca a raggiungerlo. "
 		<<"Non indugiamo, prego..cominciamo "<<endl<<endl
 		<<"ma ricordate: "<<endl<<endl
-		<<"'La tempesta si alzera'. Il cielo si aprira'. Il potere si scatenera'' contro chi un passo falso commetera'"<<"\n"<<"\n";
+		<<"'La tempesta si alzera'. Il cielo si aprira'. Il potere si scatenera'' contro chi un passo falso commettera'"<<"\n"<<"\n";
 	cout<<"Haz saeed, buona fortuna!"<<"\n"<<"\n";
 }
 
-void inizializza_gioco::stampa_giocatori(){
-	for(int i = 0; i < num_giocatori; i++){
+
+void inizializza_gioco::stampa_giocatori(){      //presenta i giocatori all'inizio del gioco ed assegna ad ognuno l'iniziale corrispondente
+	for(int i = 0; i < num_giocatori; i++){      //utile alla loro rappresentazione sul tabellone
 			cout<<"giocatore "<<i+1<<": ";
 			gioc[i]->presenta_giocatore();
             cout << "\niniziale giocatore " << i+1 << ": "<<gioc[i]->name[0];           //iniziale giocatore che verrà stampata sul tabellone
@@ -54,7 +93,7 @@ void inizializza_gioco::stampa_giocatori(){
         }
 }
 
-int inizializza_gioco::set_turno(){
+int inizializza_gioco::set_turno(){      //tiene il conto del numero dei turni
 		turno ++;
     	return turno;
 }
@@ -65,21 +104,21 @@ int inizializza_gioco::return_turn(){
 }
 
 
-void inizializza_gioco::fai_turno(int num){
+void inizializza_gioco::fai_turno(int num){    //funzione principale che implementa il gioco
 	dado d;
 	    turno = 0;
 	 	termina = false;
-	 	char stampa;
-	 	char play;
+	 	string stampa;
+	 	string play;
         int t = set_turno();
         int j = 0;
-        int fw_or_bw[num];
+        int fw_or_bw[num];   //numero casuale che stabilisce se andare avanti o indietro
         int i = 0;
         //CREO IL MAZZO
         m.crea_mazzo();
         
         //CICLO CHE PERMETTE DI FARE I TURNI 
-        while(gioc[i]->pos != num_caselle || termina == false){
+        while(gioc[i]->pos != num_caselle || termina == false){       //while che gestisce il gioco, finchè la posizione del giocatore è diversa dalla casella finale
 		 	genera_tabellone(num_caselle);
 		
 	        cout<<"---------------------------------------------------------"<<endl;
@@ -112,9 +151,10 @@ void inizializza_gioco::fai_turno(int num){
 		    	else if(gioc[i]->pos == 0) 
 					cout<<"partenza"<<endl;
 		    	
-		    	//CONDIZIONE VAI ALLA CASELLA N
+		    	//EFFETTO DELLA CASELLA:  VAI ALLA CASELLA N IN BASE AD UN NUMERO CASUALE 
 		    	else if (gioc[i]->pos%23==0){                
-		    		gioc[i]->pos = e.vai_avanti(gioc[i]->pos);
+		    		int cas = e.vai_avanti(num_caselle);
+		    		gioc[i]->pos = gioc[i]->vai_a_casella(cas);
 		    		if (gioc[i]->pos >= num_caselle){
 		    			gioc[i]->pos = quasi_arrivato(i, num_estratto);
 					}
@@ -123,7 +163,7 @@ void inizializza_gioco::fai_turno(int num){
 		    		cout<<"\n";
 				}
 				
-				//CONDIZIONE TIRA DI NUOVO
+				//EFFETTO DELLA CASELLA: TIRA DI NUOVO
 				else if(gioc[i]->pos%19 ==0){
 					gioc[i]->pos = e.tira_di_nuovo() + gioc[i]->pos;
 					if (gioc[i]->pos >= num_caselle){
@@ -134,7 +174,7 @@ void inizializza_gioco::fai_turno(int num){
 					cout<<"\n";
 				}
 				
-				//CONDIZIONE PESCA CARTA
+				//EFFETTO DELLA CASELLA: PESCA CARTA CON EFFETTO
 		    	else if(gioc[i]->pos%7==0){ 
 					cout<<"posizione giocatore "<<i+1<<"("<<gioc[i]->name<<"): "<<gioc[i]->pos<<endl;
 					cout<<"PESCA UNA CARTA!"<<endl
@@ -144,7 +184,7 @@ void inizializza_gioco::fai_turno(int num){
 					cout<<"posizione giocatore "<<i+1<<"("<<gioc[i]->name<<"): "<<gioc[i]->pos<<endl;
 				}
 		
-				//CONDIZIONE CHE PERMETTE DI ANDARE AVANTI/INDIETRO RANDOM
+				//EFFETTO DELLA CASELLA: CHE PERMETTE DI ANDARE AVANTI/INDIETRO RANDOM DI UN NUMERO N DI PASSI
 				else if(gioc[i]->pos%9==0 && t>1){
 			
 					fw_or_bw[i] = rand()%2;
@@ -164,23 +204,23 @@ void inizializza_gioco::fai_turno(int num){
 					cout<<"NUOVA POSIZIONE "<<i+1<<": "<<gioc[i]->pos<<endl;
 			    } 
 			    
-                //CONDIZIONE PER LA QUALE SE SEI IN UNA DELLE DUE CASELLE NON PUOI ANDARE AVANTI DURANTE QUEL TURNO
+                //EFFETTO DELLA CASELLA: SE SEI IN UNA DELLE DUE CASELLE NON PUOI ANDARE AVANTI DURANTE QUEL TURNO
 				else if(gioc[i]->pos==17 || gioc[i]->pos ==37){
 					cout<<"LA MUMMIA TI HA INCASTRATO, NELLA CASELLA TI HA BLOCCATO!"<<endl;
 					gioc[i]->pos = gioc[i]->pos - num_estratto;
 				}
 				
-				//CASELLA VUOTA
+				//EFFETTO DELLA CASELLA: CASELLA VUOTA
 				else cout<<"posizione giocatore "<<i+1<<"("<<gioc[i]->name<<"): "<<gioc[i]->pos<<endl;        
 			
 				cout<<"\n";
 	    
 	}
 		cout<<"premi T per stampare tabellone.."<<endl;
-		stampa = 0;
-		while (stampa != 't'){
+		stampa = "";
+		while (stampa != "t"){
 			cin>>stampa;
-			if(stampa=='t')
+			if(stampa=="t")
     			stampa_tabellone();
     		else 
     			cout<<"\npremi t"<<endl;
@@ -190,7 +230,7 @@ void inizializza_gioco::fai_turno(int num){
 }
     
 
-int inizializza_gioco::quasi_arrivato(int i, int num_estr){
+int inizializza_gioco::quasi_arrivato(int i, int num_estr){        //funzione che fa tornare indietro il giocatore se tirando il dado o per un effetto va oltre l'arrivo
         int posizione;
 		cout<<"posizione giocatore "<<i+1<<": "<<gioc[i]->pos<<endl;
 		
@@ -205,7 +245,7 @@ int inizializza_gioco::quasi_arrivato(int i, int num_estr){
 		int diff_caselle = num_caselle - gioc[i]->pos;
 		int difference = num_estr - diff_caselle;
 		posizione = num_caselle - difference;
-		cout<<"LA FINE HAI SUPERATO INDIETRO SEI TORNATO, NON DISPERARE, AL TESORO STAI QUASI PER ARRIVARE!!...  "<<endl;
+		cout<<"TROPPO AVANTI SEI ANDATO, ORA INDIETRO SEI TORNATO, NON DISPERARE, AL TESORO STAI QUASI PER ARRIVARE!!...  "<<endl;
 		cout<<"posizione giocatore "<<i+1<<"("<<gioc[i]->name<<"): "<<posizione<<endl;
 		return (posizione);
 }
@@ -214,7 +254,7 @@ int inizializza_gioco::quasi_arrivato(int i, int num_estr){
 
 
 
-void inizializza_gioco::genera_tabellone(int num_cas){
+void inizializza_gioco::genera_tabellone(int num_cas){           //funzione che genera il tabellone attraverso una lista
 	p = new casella;
     head = p;
     n = p;
@@ -235,7 +275,7 @@ void inizializza_gioco::genera_tabellone(int num_cas){
 }
 
 
-bool inizializza_gioco::stampa_tabellone(){
+bool inizializza_gioco::stampa_tabellone(){       //stampa il tabellone
 	int j;
 	termina = false;
 	j = return_num_giocatori();
@@ -270,19 +310,20 @@ bool inizializza_gioco::stampa_tabellone(){
             }
         }
         	cout<<"Vuoi continuare? Premi y/n.. "<<endl;
-        	
+        	while(x != ""){
 			cin>>x;
-			if(x=='y')
+			if(x=="y"){
 				termina = false;
-			else if(x == 'n') {
+				return termina;
+			}
+			else if(x == "n") {
 				termina = true;
 				exit(1);
 			}
-			else{
+			else
 				cout<<"\nERRORE: INPUT NON VALIDO! Premi y/n.."<<endl;
-				cin>>x;
-			}
 			
+		}
 				
 	return termina;			
 }
@@ -295,7 +336,7 @@ int inizializza_gioco::return_caselle(){
 }
 
 
-int inizializza_gioco::effetti_carta(int i){
+int inizializza_gioco::effetti_carta(int i){        //funzione che permette di pescare una carta e in base al messaggio eseguirne l'effetto
 	carta card;
 	cout<<"CARTA ESTRATTA:";
 	card = m.estrai_in_cima();
