@@ -85,10 +85,11 @@ void inizializza_gioco::fai_turno(int num){
 	        cout<<"---------------------------------------------------------"<<endl;
 	        cout<<"TURNO "<<t++<<endl;
 			for(int i=0; i<num; i++){
-				cout<<"\nPREMI QUALSIASI LETTERA PER ANDARE AVANTI.."<<endl;
+				cout<<"\n>>Giocatore "<<i+1<<" "<<gioc[i]->name<<endl;
+				cout<<"PREMI UNA LETTERA DA TASTIERA PER LANCIARE IL DADO.."<<endl;
 				cin>>play;
 			    int num_estratto = d.lancia_dado();
-				cout<<"\n"<<"\n";
+				cout<<"\n";
 			    cout<<">lancio dado.."<<num_estratto<<endl;
 		    	gioc[i]->pos = gioc[i]->vai_avanti_n_caselle(num_estratto);
 		    	
@@ -136,7 +137,9 @@ void inizializza_gioco::fai_turno(int num){
 				//CONDIZIONE PESCA CARTA
 		    	else if(gioc[i]->pos%7==0){ 
 					cout<<"posizione giocatore "<<i+1<<"("<<gioc[i]->name<<"): "<<gioc[i]->pos<<endl;
-					cout<<"PESCA UNA CARTA!"<<endl;
+					cout<<"PESCA UNA CARTA!"<<endl
+						<<" premi una lettera per pescare una carta.."<<endl;
+					cin>>play;
 					gioc[i]->pos = effetti_carta(i);
 					cout<<"posizione giocatore "<<i+1<<"("<<gioc[i]->name<<"): "<<gioc[i]->pos<<endl;
 				}
@@ -252,7 +255,8 @@ bool inizializza_gioco::stampa_tabellone(){
             //stampa partenza e arrivo
         else if(head->val == 0) 
         	cout << "partenza" << '\t' << '\t';
-        else cout << "arrivo" << endl;
+        else 
+			cout << "arrivo" << endl;
         head = head->next;
         accapo += 1;
             
@@ -292,20 +296,16 @@ int inizializza_gioco::return_caselle(){
 
 
 int inizializza_gioco::effetti_carta(int i){
-	//m.stampa_mazzo();
-	//cout<<"\n"<<"\n";
 	carta card;
-	//int num_estratto = num_estr;
-	cout<<"CARTA ESTRATTA:"<<endl;
+	cout<<"CARTA ESTRATTA:";
 	card = m.estrai_in_cima();
-	//card.stampa_carta();
 	int posiz; 
 	bool result;
 	bool fermo=false;
 	string msg = card.getmsg();
 
 	if(msg == "ritira il dado"){
-		cout<<"Sei stato fortunato, il dado sarà nuovamente tirato.."<<endl;
+		cout<<"Sei stato fortunato, il dado sara' nuovamente tirato.."<<endl;
 		cout<<"\n";
 		int die = e.tira_di_nuovo();
 		gioc[i]->pos = die + gioc[i]->pos; 
@@ -350,7 +350,7 @@ int inizializza_gioco::effetti_carta(int i){
 	}
 		  	    
 	else if(msg == "fai 3 passi indietro") {
-		cout<<"Shai è arrabbiato, indietro di 3 caselle ti ha riportato"<<endl;      //dio della sorte
+		cout<<"Shai e' arrabbiato, indietro di 3 caselle ti ha riportato"<<endl;      //dio della sorte
 		cout<<"\n";
 		posiz = gioc[i]->indietro_n_caselle(3);	
 	}
