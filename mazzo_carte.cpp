@@ -215,14 +215,15 @@ bool mazzo::gestione_domanda(){
     char risp=' ';
 	
  	num_dom = (rand() % NUM_TOT_DOM) ;
-	cout<<" domanda num:  "   << num_dom<<endl;
+//	cout<<" indovinello num:  "   << 
+	cout<<num_dom<<endl;
  	cout<< vect_dom[num_dom].doman<< endl <<endl;
     for(int i=0;i<NUM_RISP;i++){
      	cout<< vect_dom[num_dom].risposta[i]<< endl ;
 	}
         cout<<endl;
  	// GESTIONE RISPOSTA 
- 	cout<< "INSERIRE LA RISPOSTA ESATTA (inserire  la lettera corrispondente : a,b,c,d  )  :   ";
+ 	cout<< "INSERIRE LA RISPOSTA ESATTA (inserire la lettera corrispondente : a,b,c,d )  :   ";
 	cin>> risp;
 	while(cin.fail()|| risp<'a'||risp>'d'){
 		cout<< " Imput non valido"<<endl<<endl;
@@ -231,15 +232,15 @@ bool mazzo::gestione_domanda(){
 	} /* End while controllo risposta valida*/
  	if(risp==vect_dom[num_dom].risp_esatta){ 
 	// RISPOSTA ESATTA
-		cout<<" Risposta esatta !!! "<<endl<<endl;
-		cin.ignore();  
+		cout<<" Risposta CORRETTA!! Vai avanti il tesoro ti aspetta!! "<<endl<<endl;
+		cin.ignore();  // NON SO BENE SE SERVE???
 		// viene eventualmente invocata la funzione che gestisce la risposta esatta  oppure return true
 		return true;
 	}
 	else{
 		// RISPOSTA ERRATA
-		cout<<" Risposta e' errata  !!! "<<endl<<endl;
-		cin.ignore();  
+		cout<<" Risposta ERRATA!! una punizione va pagata, torna indietro alla casella assegnata.. "<<endl<<endl;
+		cin.ignore();  // NON SO BENE SE SERVE???
 		// viene eventualmente invocata la funzione che gestisce la risposta esatta  oppure return true
 		return false;
 	}
@@ -247,4 +248,4 @@ bool mazzo::gestione_domanda(){
 
 
 
-// il mazzo viene implementato come una classe :un array di carte e i vari metodi
+// il mazzo viene implementato come una classe :un array di cartE E I vari metodi
