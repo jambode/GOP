@@ -1,10 +1,4 @@
-#include <iostream>
-#include <cstring>
-#include <ctime>
-#include <cstdlib>
-#include <cstring>
-#include "carta.h"
-
+//carta.cpp
 using namespace std;
 
 
@@ -25,8 +19,7 @@ string carta::getmsg(){
 	return msg;
 }
 
-// SERVE PER I TEST stampa il valore di una carta 
-	void carta::stampa_carta (){
-		cout<<"messaggio =  "<<msg <<"\n";
-		
-	}
+
+void carta::stampa_carta (){
+	cout<<"messaggio =  "<<msg <<"\n";		
+}
