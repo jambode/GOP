@@ -19,7 +19,7 @@ Il tema è l’antico Egitto con i suoi misteri, in particolare è ambientato ne
    *  Avanza;
    *  Torna indietro;
    *  Torna all’inizio;
-   *  Salta il turno;
+   *  Scambia posizione con un altro giocatore;
    *  Rispondi alla domanda;
  * Azioni delle caselle:
    *  Vai avanti;
